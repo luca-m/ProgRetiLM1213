@@ -1,0 +1,7 @@
+64 bytes from 192.168.116.1: icmp_seq=157 ttl=60 time=0.990 ms
+64 bytes from 192.168.116.1: icmp_seq=158 ttl=60 time=0.981 ms
+64 bytes from 192.168.116.1: icmp_seq=159 ttl=60 time=0.999 ms
+64 bytes from 192.168.116.1: icmp_seq=163 ttl=61 time=2.25 ms
+64 bytes from 192.168.116.1: icmp_seq=164 ttl=61 time=1.28 ms
+64 bytes from 192.168.116.1: icmp_seq=165 ttl=61 time=1.41 ms
+64 bytes from 192.168.116.1: icmp_seq=166 ttl=61 time=1.95 ms
