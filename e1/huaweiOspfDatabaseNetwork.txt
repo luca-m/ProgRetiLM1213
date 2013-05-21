@@ -1,0 +1,55 @@
+[Quidway-1]display ospf lsdb network 
+
+                OSPF Process 70 with Router ID 172.30.15.3
+                         Link State Database
+
+                Area: 0.0.0.0
+
+Type      : Net
+Ls id     : 172.16.15.1
+Adv rtr   : 172.30.15.3  
+Ls age    : 701
+Len       : 32 
+Seq#      : 80000002 
+Chksum    : 0xebf0
+Options   : (DC)
+Net mask  : 255.255.255.252
+   Attached Router    172.30.15.3
+   Attached Router    172.30.15.1
+
+Type      : Net
+Ls id     : 172.16.15.6
+Adv rtr   : 172.30.15.2                   
+Ls age    : 1537                          
+Len       : 32                            
+Seq#      : 80000001                      
+Chksum    : 0x993f                        
+Options   : (DC)                          
+Net mask  : 255.255.255.252               
+   Attached Router    172.30.15.2         
+   Attached Router    172.30.15.1         
+                                          
+Type      : Net                           
+Ls id     : 172.16.16.2                   
+Adv rtr   : 172.30.16.1                   
+Ls age    : 859                           
+Len       : 32                            
+Seq#      : 80000001 
+Chksum    : 0xae4b
+Options   : (Non DC)
+Net mask  : 255.255.255.252
+   Attached Router    172.30.15.3
+   Attached Router    172.30.16.1
+
+Type      : Net
+Ls id     : 172.16.16.6
+Adv rtr   : 172.30.16.2  
+Ls age    : 1678
+Len       : 32 
+Seq#      : 80000001 
+Chksum    : 0x9d37
+Options   : (DC)
+Net mask  : 255.255.255.252
+   Attached Router    172.30.16.2
+   Attached Router    172.30.16.1
+

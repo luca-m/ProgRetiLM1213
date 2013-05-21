@@ -1,0 +1,128 @@
+[Quidway-1]display ospf lsdb router 
+
+                OSPF Process 70 with Router ID 172.30.15.3
+                         Link State Database
+
+                Area: 0.0.0.0
+
+Type      : Router
+Ls id     : 172.30.15.1
+Adv rtr   : 172.30.15.1  
+Ls age    : 819
+Len       : 72 
+Seq#      : 80000009 
+Chksum    : 0x7fe5
+Options   : (Non DC)
+Link count: 4
+   Link ID: 192.168.115.0 
+   Data   : 255.255.255.0 
+   Type   : StubNet      
+   Metric : 1
+   Link ID: 172.16.15.1  
+   Data   : 172.16.15.2                   
+   Type   : TransNet                      
+   Metric : 1                             
+   Link ID: 172.16.15.6                   
+   Data   : 172.16.15.5                   
+   Type   : TransNet                      
+   Metric : 1                             
+   Link ID: 172.30.15.1                   
+   Data   : 255.255.255.255               
+   Type   : StubNet                       
+   Metric : 10                            
+                                          
+Type      : Router                        
+Ls id     : 172.30.15.2                   
+Adv rtr   : 172.30.15.2                   
+Ls age    : 1405                          
+Len       : 72                            
+Seq#      : 800000db                      
+Chksum    : 0x9b27                        
+Options   : (DC)                          
+Link count: 4                             
+   Link ID: 172.30.15.2                   
+   Data   : 255.255.255.255               
+   Type   : StubNet                       
+   Metric : 1                             
+   Link ID: 172.30.16.2                   
+   Data   : 10.15.16.1                    
+   Type   : Point-to-Point                
+   Metric : 1                             
+   Link ID: 10.15.16.0                    
+   Data   : 255.255.255.252               
+   Type   : StubNet                       
+   Metric : 1                             
+   Link ID: 172.16.15.6                   
+   Data   : 172.16.15.6                   
+   Type   : TransNet                      
+   Metric : 1                             
+                                          
+Type      : Router                        
+Ls id     : 172.30.15.3                   
+Adv rtr   : 172.30.15.3                   
+Ls age    : 569                           
+Len       : 48                            
+Seq#      : 8000000c                      
+Chksum    : 0xfe2b                        
+Options   : (DC)                          
+Link count: 2                             
+   Link ID: 172.16.15.1                   
+   Data   : 172.16.15.1                   
+   Type   : TransNet                      
+   Metric : 1                             
+   Link ID: 172.16.16.2                   
+   Data   : 172.16.16.1                   
+   Type   : TransNet                      
+   Metric : 1                             
+                                          
+Type      : Router                        
+Ls id     : 172.30.16.1                   
+Adv rtr   : 172.30.16.1                   
+Ls age    : 727                           
+Len       : 72                            
+Seq#      : 8000000c                      
+Chksum    : 0x2831                        
+Options   : (Non DC)                      
+Link count: 4                             
+   Link ID: 192.168.116.0                 
+   Data   : 255.255.255.0                 
+   Type   : StubNet                       
+   Metric : 1                             
+   Link ID: 172.16.16.2                   
+   Data   : 172.16.16.2                   
+   Type   : TransNet                      
+   Metric : 1                             
+   Link ID: 172.16.16.6                   
+   Data   : 172.16.16.5                   
+   Type   : TransNet                      
+   Metric : 1                             
+   Link ID: 172.30.16.1                   
+   Data   : 255.255.255.255               
+   Type   : StubNet                       
+   Metric : 10                            
+                                          
+Type      : Router                        
+Ls id     : 172.30.16.2                   
+Adv rtr   : 172.30.16.2                   
+Ls age    : 1546                          
+Len       : 72                            
+Seq#      : 800000d8                      
+Chksum    : 0xfbc4                        
+Options   : (DC)                          
+Link count: 4                             
+   Link ID: 172.30.16.2                   
+   Data   : 255.255.255.255               
+   Type   : StubNet                       
+   Metric : 1                             
+   Link ID: 172.30.15.2                   
+   Data   : 10.15.16.2                    
+   Type   : Point-to-Point                
+   Metric : 1                             
+   Link ID: 10.15.16.0                    
+   Data   : 255.255.255.252               
+   Type   : StubNet                       
+   Metric : 1                             
+   Link ID: 172.16.16.6                   
+   Data   : 172.16.16.6                   
+   Type   : TransNet                      
+   Metric : 1 

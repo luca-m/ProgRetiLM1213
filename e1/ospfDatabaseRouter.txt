@@ -1,0 +1,179 @@
+netlab16-ospfd# show ip ospf database router
+
+       OSPF Router with ID (172.30.16.1)
+
+
+                Router Link States (Area 0.0.0.0)
+
+  LS age: 418
+  Options: 0x2  : *|-|-|-|-|-|E|*
+  LS Flags: 0x6  
+  Flags: 0x0
+  LS Type: router-LSA
+  Link State ID: 172.30.15.1 
+  Advertising Router: 172.30.15.1
+  LS Seq Number: 80000009
+  Checksum: 0x7fe5
+  Length: 72
+   Number of Links: 4
+
+    Link connected to: Stub Network
+     (Link ID) Net: 192.168.115.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.15.1
+     (Link Data) Router Interface address: 172.16.15.2
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.15.6
+     (Link Data) Router Interface address: 172.16.15.5
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+          
+    Link connected to: Stub Network
+     (Link ID) Net: 172.30.15.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metric: 10
+
+
+  LS age: 1002
+  Options: 0x22 : *|-|DC|-|-|-|E|*
+  LS Flags: 0x6  
+  Flags: 0x0
+  LS Type: router-LSA
+  Link State ID: 172.30.15.2 
+  Advertising Router: 172.30.15.2
+  LS Seq Number: 800000db
+  Checksum: 0x9b27
+  Length: 72
+   Number of Links: 4
+
+    Link connected to: Stub Network
+     (Link ID) Net: 172.30.15.2
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 172.30.16.2
+     (Link Data) Router Interface address: 10.15.16.1
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: Stub Network
+     (Link ID) Net: 10.15.16.0
+     (Link Data) Network Mask: 255.255.255.252
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.15.6
+     (Link Data) Router Interface address: 172.16.15.6
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+
+  LS age: 167
+  Options: 0x20 : *|-|DC|-|-|-|-|*
+  LS Flags: 0x6  
+  Flags: 0x0
+  LS Type: router-LSA
+  Link State ID: 172.30.15.3 
+  Advertising Router: 172.30.15.3
+  LS Seq Number: 8000000c
+  Checksum: 0xfe2b
+  Length: 48
+   Number of Links: 2
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.15.1
+     (Link Data) Router Interface address: 172.16.15.1
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.16.2
+     (Link Data) Router Interface address: 172.16.16.1
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+
+  LS age: 323
+  Options: 0x2  : *|-|-|-|-|-|E|*
+  LS Flags: 0x3  
+  Flags: 0x0
+  LS Type: router-LSA
+  Link State ID: 172.30.16.1 
+  Advertising Router: 172.30.16.1
+  LS Seq Number: 8000000c
+  Checksum: 0x2831
+  Length: 72
+   Number of Links: 4
+
+    Link connected to: Stub Network
+     (Link ID) Net: 192.168.116.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.16.2
+     (Link Data) Router Interface address: 172.16.16.2
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.16.6
+     (Link Data) Router Interface address: 172.16.16.5
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: Stub Network
+     (Link ID) Net: 172.30.16.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metric: 10
+
+
+  LS age: 1142
+  Options: 0x22 : *|-|DC|-|-|-|E|*
+  LS Flags: 0x6  
+  Flags: 0x0
+  LS Type: router-LSA
+  Link State ID: 172.30.16.2 
+  Advertising Router: 172.30.16.2
+  LS Seq Number: 800000d8
+  Checksum: 0xfbc4
+  Length: 72
+   Number of Links: 4
+
+    Link connected to: Stub Network
+     (Link ID) Net: 172.30.16.2
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 172.30.15.2
+     (Link Data) Router Interface address: 10.15.16.2
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: Stub Network
+     (Link ID) Net: 10.15.16.0
+     (Link Data) Network Mask: 255.255.255.252
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 172.16.16.6
+     (Link Data) Router Interface address: 172.16.16.6
+      Number of TOS metrics: 0
+       TOS 0 Metric: 1
+
