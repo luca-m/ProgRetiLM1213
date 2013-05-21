@@ -1,0 +1,6 @@
+2801B#show ip ospf neighbor 
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.30.15.2       0   FULL/  -        00:00:32    10.15.16.1      Vlan1
+172.30.16.1       1   FULL/BDR        00:00:36    172.16.16.5     FastEthernet0/1.16
+

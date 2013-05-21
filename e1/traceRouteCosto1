@@ -1,0 +1,7 @@
+[daniele.bellavista@netlab13 ~]$ traceroute -n 192.168.116.1
+traceroute to 192.168.116.1 (192.168.116.1), 30 hops max, 60 byte packets
+ 1  192.168.115.2  0.191 ms  0.177 ms  0.156 ms
+ 2  172.16.15.1  5.923 ms  6.056 ms  6.185 ms
+ 3  172.16.16.2  5.543 ms  5.677 ms *
+ 4  192.168.116.1  4.657 ms  4.667 ms  4.700 ms
+

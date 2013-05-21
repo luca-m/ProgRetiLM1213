@@ -1,0 +1,21 @@
+2801A#show ip ospf database 
+
+            OSPF Router with ID (172.30.15.2) (Process ID 15)
+
+		Router Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+172.30.15.1     172.30.15.1     375         0x80000009 0x007FE5 4
+172.30.15.2     172.30.15.2     959         0x800000DB 0x009B27 4
+172.30.15.3     172.30.15.3     128         0x8000000C 0x00FE2B 2
+172.30.16.1     172.30.16.1     285         0x8000000C 0x002831 4
+172.30.16.2     172.30.16.2     1102        0x800000D8 0x00FBC4 4
+
+		Net Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+172.16.15.1     172.30.15.3     128         0x80000002 0x00EBF0
+172.16.15.6     172.30.15.2     959         0x80000001 0x00993F
+172.16.16.2     172.30.16.1     284         0x80000001 0x00AE4B
+172.16.16.6     172.30.16.2     1102        0x80000001 0x009D37
+

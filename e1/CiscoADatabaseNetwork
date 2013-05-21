@@ -1,0 +1,58 @@
+2801A#show ip ospf database network 
+
+            OSPF Router with ID (172.30.15.2) (Process ID 15)
+
+		Net Link States (Area 0)
+
+  Routing Bit Set on this LSA
+  LS age: 220
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 172.16.15.1 (address of Designated Router)
+  Advertising Router: 172.30.15.3
+  LS Seq Number: 80000002
+  Checksum: 0xEBF0
+  Length: 32
+  Network Mask: /30
+	Attached Router: 172.30.15.3
+	Attached Router: 172.30.15.1
+
+  Routing Bit Set on this LSA
+  LS age: 1051
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 172.16.15.6 (address of Designated Router)
+  Advertising Router: 172.30.15.2
+  LS Seq Number: 80000001
+  Checksum: 0x993F
+  Length: 32
+  Network Mask: /30
+        Attached Router: 172.30.15.2
+        Attached Router: 172.30.15.1
+          
+  Routing Bit Set on this LSA
+  LS age: 379
+  Options: (No TOS-capability, No DC)
+  LS Type: Network Links
+  Link State ID: 172.16.16.2 (address of Designated Router)
+  Advertising Router: 172.30.16.1
+  LS Seq Number: 80000001
+  Checksum: 0xAE4B
+  Length: 32
+  Network Mask: /30
+        Attached Router: 172.30.15.3
+        Attached Router: 172.30.16.1
+          
+  Routing Bit Set on this LSA
+  LS age: 1197
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 172.16.16.6 (address of Designated Router)
+  Advertising Router: 172.30.16.2
+  LS Seq Number: 80000001
+  Checksum: 0x9D37
+  Length: 32
+  Network Mask: /30
+        Attached Router: 172.30.16.2
+        Attached Router: 172.30.16.1
+
