@@ -1,0 +1,44 @@
+2801B#show running-config 
+
+interface Loopback16
+ ip address 172.30.16.2 255.255.255.255
+!         
+interface FastEthernet0/0
+ description Management Interface - KEEP IT UP AND DO NOT MODIFY!
+ ip address 192.168.8.250 255.255.255.0
+ duplex auto
+ speed auto
+!         
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!         
+interface FastEthernet0/1.16
+ encapsulation dot1Q 16
+ ip address 172.16.16.6 255.255.255.252
+ no cdp enable
+!         
+interface FastEthernet0/3/0
+!         
+interface FastEthernet0/3/1
+ switchport access vlan 2
+!         
+interface FastEthernet0/3/2
+ switchport access vlan 3
+!         
+interface FastEthernet0/3/3
+ switchport access vlan 4
+!         
+interface Vlan1
+ ip address 10.15.16.2 255.255.255.252
+ ip ospf network point-to-point
+!         
+router ospf 16
+ router-id 172.30.16.2
+ log-adjacency-changes
+ network 10.15.16.0 0.0.0.3 area 0
+ network 172.16.16.4 0.0.0.3 area 0
+ network 172.30.16.2 0.0.0.0 area 0
+
+

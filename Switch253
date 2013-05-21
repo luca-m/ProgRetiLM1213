@@ -1,0 +1,40 @@
+VLAN ID   Name                            
+------------------------------------------
+1         Default VLAN                    
+2         VLAN 2                          
+15        VLAN 15                         
+16        VLAN 16                         
+115       VLAN 115                        
+116       VLAN 116                        
+
+VLAN ID: 15	Name: VLAN 15
+
+Unit              Untagged Member Ports      Tagged Member Ports        
+------------------------------------------------------------------------
+1                 none                       3,40                       
+Aggregated Links  none                       none                       
+
+VLAN ID: 16	Name: VLAN 16
+
+Unit              Untagged Member Ports      Tagged Member Ports        
+------------------------------------------------------------------------
+1                 none                       1,40                       
+Aggregated Links  none                       none                       
+
+VLAN ID: 115	Name: VLAN 115
+
+Unit              Untagged Member Ports      Tagged Member Ports        
+------------------------------------------------------------------------
+1                 none                       3,5                        
+Aggregated Links  none                       none                       
+
+
+VLAN ID: 116	Name: VLAN 116
+
+Unit              Untagged Member Ports      Tagged Member Ports        
+------------------------------------------------------------------------
+1                 none                       1-2                        
+Aggregated Links  none                       none                       
+
+
+

@@ -1,0 +1,34 @@
+VLAN ID		Local ID	Name
+  1		   1		Default VLAN
+  15		   2		VLAN 15
+  16		   3		VLAN 16
+  1516		   4		VLAN 1516
+
+
+
+VLAN ID: 15	Local ID: 2	Name: VLAN 15
+
+Unit		Ports
+1		2, 7
+
+Unicast Frames:  	1041      	Octets:          	4294552   
+Multicast Frames:	42751     	Broadcast Frames:	4         
+
+
+VLAN ID: 16	Local ID: 3	Name: VLAN 16
+
+Unit		Ports
+1		7, 16
+
+Unicast Frames:  	958       	Octets:          	4274927   
+Multicast Frames:	42568     	Broadcast Frames:	61        
+
+
+VLAN ID: 1516	Local ID: 4	Name: VLAN 1516
+
+Unit		Ports
+1		13, 18
+
+Unicast Frames:  	1051      	Octets:          	22482374  
+Multicast Frames:	300674    	Broadcast Frames:	6         
+
