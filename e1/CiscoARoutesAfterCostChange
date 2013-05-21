@@ -1,0 +1,16 @@
+C    192.168.8.0/24 is directly connected, FastEthernet0/0
+     172.16.0.0/30 is subnetted, 4 subnets
+O       172.16.16.4 [110/2] via 10.15.16.2, 00:57:03, FastEthernet0/3/0.1516
+O       172.16.16.0 [110/3] via 10.15.16.2, 00:36:11, FastEthernet0/3/0.1516
+O       172.16.15.0 [110/3] via 172.16.15.5, 00:00:43, FastEthernet0/1.15
+C       172.16.15.4 is directly connected, FastEthernet0/1.15
+     172.30.0.0/32 is subnetted, 4 subnets
+O       172.30.16.2 [110/2] via 10.15.16.2, 00:57:03, FastEthernet0/3/0.1516
+O       172.30.16.1 [110/12] via 10.15.16.2, 00:49:21, FastEthernet0/3/0.1516
+O       172.30.15.1 [110/11] via 172.16.15.5, 00:47:06, FastEthernet0/1.15
+C       172.30.15.2 is directly connected, Loopback15
+O    192.168.115.0/24 [110/2] via 172.16.15.5, 00:38:12, FastEthernet0/1.15
+     10.0.0.0/30 is subnetted, 1 subnets
+C       10.15.16.0 is directly connected, FastEthernet0/3/0.1516
+O    192.168.116.0/24 [110/3] via 10.15.16.2, 00:39:11, FastEthernet0/3/0.1516
+
