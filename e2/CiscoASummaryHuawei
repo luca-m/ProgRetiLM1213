@@ -1,0 +1,18 @@
+  Routing Bit Set on this LSA
+  LS age: 506
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 172.30.15.3
+  Advertising Router: 172.30.15.3
+  LS Seq Number: 80000005
+  Checksum: 0xBAA8
+  Length: 36
+  Area Border Router
+  Number of Links: 1
+          
+    Link connected to: a Virtual Link
+     (Link ID) Neighboring Router ID: 172.30.16.1
+     (Link Data) Router Interface address: 10.16.15.2
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 11
+

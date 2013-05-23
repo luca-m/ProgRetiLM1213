@@ -1,0 +1,38 @@
+Router 115 (PC) Zebra config
+
+router ospf
+ ospf router-id 172.30.115.1
+ network 172.30.115.1/32 area 0.0.0.15
+ network 192.168.115.0/25 area 0.0.0.15
+ network 192.168.115.128/26 area 0.0.0.15
+ network 192.168.115.192/26 area 0.0.0.15
+
+netlab13-ospfd# show ip ospf neighbor 
+
+    Neighbor ID Pri State           Dead Time Address         Interface            RXmtL RqstL DBsmL
+172.30.15.1       1 Full/DR           32.289s 192.168.115.2   eth1.115:192.168.115.1     0     0     0
+
+Router 115 Interfaces
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet 172.30.115.1/32 scope global lo
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+5: eth1.115@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP 
+    link/ether 00:07:e9:f5:76:ef brd ff:ff:ff:ff:ff:ff
+    inet 192.168.115.1/25 scope global eth1.115
+    inet6 fe80::207:e9ff:fef5:76ef/64 scope link 
+       valid_lft forever preferred_lft forever
+6: eth1.1151@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP 
+    link/ether 00:07:e9:f5:76:ef brd ff:ff:ff:ff:ff:ff
+    inet 192.168.115.193/26 scope global eth1.1151
+    inet6 fe80::207:e9ff:fef5:76ef/64 scope link 
+       valid_lft forever preferred_lft forever
+7: eth1.1152@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP 
+    link/ether 00:07:e9:f5:76:ef brd ff:ff:ff:ff:ff:ff
+    inet 192.168.115.129/26 scope global eth1.1152
+    inet6 fe80::207:e9ff:fef5:76ef/64 scope link 
+       valid_lft forever preferred_lft forever
+
