@@ -1,0 +1,39 @@
+
+#UAWEI
+system-view
+
+#router id 1 - process id
+ospf
+area 0.0.0.16
+network 10.16.15.0 0.0.0.3
+network 172.30.15.3 0.0.0.0
+# router id should be placed in non-isolated network
+# in order to enable virtual links to backbone
+vlink-peer 172.30.16.1
+# after the linking we need to aggregate area Y (16) nets
+abr-summary 192.168.116.0 255.255.255.0
+
+area 0.0.16.15
+network 192.168.66.0 0.0.0.255
+
+q
+q
+# router id modification are not enforced at runtime. must restar/reset the process
+reset ospf 1
+# ZEBRA
+# rk 172.30.15.3 0.0.0.0
+
+configure terminal
+router ospf
+ospf router-id 172.30.116.1
+network 192.168.116.0/25 area 16
+network 192.168.116.128/26 area 16
+network 192.168.116.192/26 area 16
+network 172.30.116.1/32 area 16
+network 10.16.15.0/30  area  16
+# After aggregation (ospf routing table)
+# directly attached to lo
+# N IA 192.168.115.0/24      [24] area: 0.0.0.16  via 192.168.116.2, eth1.116
+# (there were 3 networks before)
+
+
