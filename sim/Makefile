@@ -1,6 +1,6 @@
 CFLAGS+=-lm
 LDFLAGS+=-lm
-EXTRA_CFLAGS+=-DDEBUG 
+#EXTRA_CFLAGS+=-DDEBUG 
 
 all: mm1prio
 

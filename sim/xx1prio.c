@@ -180,10 +180,10 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
     int j;
     struct event *e, *aux;
     struct customer *c, *caux;
-    while (tot_departures < N) {
-        // Loop until all the generated customers have left the system
-        if (DEBUG) {
-            // Print lots of information about the lists if DEBUG is true
+
+    while (tot_departures < N) {  // Loop until all the generated customers have left the system
+
+        if (DEBUG) {  // Print lots of information about the lists if DEBUG is true
             fprintf(stderr, "DEBUG 17: Cycling...\n");
             fprintf(stderr, "          Current event list:\n");
             fprintf(stderr, "          ");
@@ -193,6 +193,8 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
                 aux = aux->next;
             }
             fprintf(stderr, "\n");
+        }
+        if (DEBUG) {
             fprintf(stderr, "          Current customer list:\n");
             for (j = 0; j < C; j++) {
                 fprintf(stderr, "          q[%d]----->", j);
@@ -204,12 +206,14 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
                 fprintf(stderr, "\n");
             }
         }
+
         // Start processing the first event in the list and set the current time
         e = get_event();
         now = e->time;
         if (DEBUG) {
             fprintf(stderr, "DEBUG 10: Current time = %1.6f\n", now);
         }
+
         if (e->type == ARRIVAL) {
             // The event is an arrival: increment the counters and the state
             k++;
@@ -223,7 +227,7 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
                 // and a departure event is created and inserted into the list
                 tfree = now + e->service;
                 insert_new_event(tfree, DEPARTURE, e->pclass, 0);
-            } else { 
+            } else {
                 // The system was not empty: the customer is queued to the relevant waiting list
                 tfree = tfree + e->service;
                 append(e->pclass, now, e->service);
@@ -231,7 +235,7 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
             if (tot_arrivals < N) {
                 // There are more arrivals to be generated: create a new one
                 // and insert it in the event list
-                insert_new_event(now + arrival_distr(lambda[e->pclass]), ARRIVAL, e->pclass, service_time_distr(e->pclass));
+                insert_new_event(now + arrival_distr(lambda[e->pclass]), ARRIVAL, e->pclass, service_time_distr( mu[e->pclass] ) );
             }
         } else if (e->type == DEPARTURE) {
             // The event is a departure: increment the counters and decrement the state
@@ -244,15 +248,12 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
                 // The system has not been left empty: put the next queued customer in service
                 // taking it from the highest priority waiting list
                 j = 0;
-                // Find the first non-empty waiting list
                 while (q[j] == NULL) {
-                    j++;
+                    j++;    // Find the first non-empty waiting list
                 }
                 c = get_customer(j);
-                // Update the sum of the waiting time for class j
-                w[j] = w[j] + (now - c->t_arr);
-                // Create a departure event and insert it into the list
-                insert_new_event(now + c->service, DEPARTURE, j, 0);
+                w[j] = w[j] + (now - c->t_arr);  // Update the sum of the waiting time for class j
+                insert_new_event(now + c->service, DEPARTURE, j, 0); // Create a departure event and insert it into the list
                 if (DEBUG) {
                     fprintf(stderr, "DEBUG 07: Removing customer object\n");
                 }
@@ -271,12 +272,18 @@ void simulate( double (*arrival_distr)(double), double (*service_time_distr)(dou
             exit(-1);
         }
         free(e);  // Remove the event object and free memory space
+
         if (DEBUG) {
             fprintf(stderr, "DEBUG 09: Current state = %d\n", k);
+        }
+        if (DEBUG) {
             fprintf(stderr, "DEBUG 11: Total arrivals = %d, Total departures = %d\n", tot_arrivals, tot_departures);
+        }
+        if (DEBUG) {
             fprintf(stderr, "----------------------------------------------------------------------------------\n\n");
         }
-    }
+
+    }  // End of the main loop
 }
 /*
     Do final computation on measured data
@@ -289,14 +296,14 @@ void prepare_results() {
         w[j] = w[j] / arrivals[j];  // Compute the mean waiting time for class j
     }
     if (DEBUG) {
-       fprintf(stderr, "DEBUG 19: tot_w = %f\n", tot_w);
-       fprintf(stderr, "DEBUG 19: N = %f\n", N);
+        fprintf(stderr, "DEBUG 19: tot_w = %f\n", tot_w);
+        fprintf(stderr, "DEBUG 19: N = %d\n", N);
     }
     tot_w = tot_w / (float)N; // Compute the mean overall waiting time
-  if (DEBUG) {
-       fprintf(stderr, "DEBUG 19: tot_w = %f\n", tot_w);
+    if (DEBUG) {
+        fprintf(stderr, "DEBUG 19: tot_w = %f\n", tot_w);
     }
-  
+
 }
 /*
     Print result
