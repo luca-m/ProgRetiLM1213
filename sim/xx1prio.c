@@ -310,11 +310,20 @@ void prepare_results() {
 */
 void print_results() {
     int j;
-    printf("# Class\tMean waiting time\n");
-    for (j = 0; j < C; j++) {
-        printf("%d\t%f\n", j, w[j]);
+    if (DEBUG) {
+        // Print header
+        printf("#NArrivals, ");
+        for (j = 0; j < C; j++) {
+            printf("rho_%d, mu_%d, eta_%d, ", j, j, j);
+        }
+        printf("eta_mean\n");
     }
-    printf("\n# Overall\t%f\n", tot_w);
+    // Print values
+    printf("%d ,",N);
+    for (j = 0; j < C; j++) {
+        printf("%f, %f, %f, ",lambda[j] / mu[j], mu[j], w[j]);
+    }
+    printf("%f\n",tot_w);
 }
 
 /*
