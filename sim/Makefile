@@ -13,11 +13,14 @@ mm1prio.o: mm1prio.c
 md1prio.o: md1prio.c
 	$(CC) -c $(CFLAGS) $(EXTRA_CFLAGS) md1prio.c
 
-mm1prio: xx1prio.o mm1prio.o
-	$(CC) xx1prio.o mm1prio.o $(LDFLAGS) $(EXTRA_CFLAGS) -o mm1prio
+mm1prio: xx1prio.o mm1prio.o mt.o
+	$(CC) xx1prio.o mm1prio.o mt.o $(LDFLAGS) $(EXTRA_CFLAGS) -o mm1prio
 
-md1prio: xx1prio.o md1prio.o
-	$(CC) xx1prio.o md1prio.o $(LDFLAGS) $(EXTRA_CFLAGS) -o md1prio
+md1prio: xx1prio.o md1prio.o mt.o
+	$(CC) xx1prio.o md1prio.o mt.o $(LDFLAGS) $(EXTRA_CFLAGS) -o md1prio
+
+mt.o: mt.c
+	$(CC) -c $(CFLAGS) $(EXTRA_CFLAGS) mt.c	
 
 clean:
 	rm -f xx1prio.o mm1prio.o mm1prio md1prio.o md1prio
