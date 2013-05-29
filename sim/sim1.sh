@@ -23,7 +23,7 @@ PATHPART_2=data/sim1/part2
 echo "> PART 1"
 
 RHO=0.7
-MU=0.3
+SVC_MEAN_TIME=3   # MU = 1/SVC_MEAN_TIME
 ARRIVALS=500
 SAMPLES=50
 CONF=0.95
@@ -51,8 +51,8 @@ do
 	for ((i=0;i<=$SAMPLES;i++))
 	do
 		seed=`expr $seed + 9`
-		./mm1prio $seed $n 1 $RHO $MU >> $PATHPART_1/raw/mm1_$n
-		./md1prio $seed $n 1 $RHO $MU >> $PATHPART_1/raw/md1_$n
+		./mm1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/mm1_$n
+		./md1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/md1_$n
 	done
 
 	./confidence_interval.R $PATHPART_1/raw/mm1_$n $FIELDNAME $CONF 2>/dev/null >> $PATHPART_1/mm1.csv
