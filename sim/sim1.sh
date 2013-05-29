@@ -41,7 +41,7 @@ touch $PATHPART_1/md1.csv
 echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME" > $PATHPART_1/mm1.csv
 echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME" > $PATHPART_1/md1.csv
 
-for ((n=0;n<=$ARRIVALS;n++)) 
+for ((n=1;n<=$ARRIVALS;n++)) 
 do
 	echo -n "."
 	touch $PATHPART_1/raw/mm1_$n
