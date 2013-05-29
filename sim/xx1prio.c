@@ -155,15 +155,6 @@ Customer *get_customer(unsigned char pclass) {
 */
 void initialize( double (*arrival_distr)(double), double (*service_time_distr)(double) ) {
     int j;
-    // Initialize all the global variables and counters
-    k = 0;
-    tfree = 0.0;
-    now = 0.0;
-    tot_arrivals = 0;
-    tot_departures = 0;
-    tot_w = 0.0;
-
-    srand(seed);
 
     for (j = 0; j < C; j++) {
         arrivals[j] = 0;
@@ -365,5 +356,17 @@ int parse_args(int argc, char *argv[]) {
         mu[j] = 1.0 / atof(argv[4 + 2 * j + 1]);
         lambda[j] = atof(argv[4 + 2 * j]) * mu[j];
     }
+
+   // Initialize all the global variables and counters
+    k = 0;
+    tfree = 0.0;
+    now = 0.0;
+    tot_arrivals = 0;
+    tot_departures = 0;
+    tot_w = 0.0;
+
+    srand(seed);
+    
+    
     return 0;
 }

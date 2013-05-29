@@ -1,4 +1,5 @@
 #include "xx1prio.h"
+#include "mt.h"
 
 /*
     This function generates an instance of an exponential random variable
@@ -10,7 +11,7 @@ double expon(double param) {
     int rnd_num;
     double unif, val;
     // Generate a uniform random number between 0 and 1
-    rnd_num = rand();
+    rnd_num = mt_random(); //rand();
     if (rnd_num == RAND_MAX) {
         rnd_num--;
     }
@@ -44,6 +45,8 @@ int main(int argc, char *argv[]) {
     if (ret != 0) {
         exit(ret);
     }
+
+    mt_init(); // Mersenne Twist initialization
 
     initialize(&expon, &deterministic);
 
