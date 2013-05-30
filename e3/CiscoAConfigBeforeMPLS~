@@ -1,0 +1,48 @@
+interface Loopback15
+ ip address 172.30.15.2 255.255.255.255
+!         
+interface FastEthernet0/0
+ description Management Interface - KEEP IT UP AND DO NOT MODIFY!
+ ip address 192.168.8.249 255.255.255.0
+ duplex auto
+ speed auto
+!         
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!         
+interface FastEthernet0/1.15
+ encapsulation dot1Q 15
+ ip address 172.16.15.6 255.255.255.252
+ no cdp enable
+!         
+interface Serial0/1/0
+ ip address 10.110.110.1 255.255.255.252
+ encapsulation ppp
+ shutdown 
+!         
+interface Serial0/1/1
+ ip address 10.130.130.1 255.255.255.252
+ encapsulation ppp
+ shutdown 
+!         
+interface FastEthernet0/3/0
+ ip address 10.10.100.2 255.255.255.252
+ duplex auto
+ speed auto
+!         
+interface FastEthernet0/3/0.1516
+ encapsulation dot1Q 1516
+ ip address 10.15.16.1 255.255.255.252
+ ip ospf network point-to-point
+ no cdp enable
+!         
+router ospf 15
+ router-id 172.30.15.2
+ log-adjacency-changes
+ network 10.10.100.0 0.0.0.3 area 0
+ network 172.16.15.4 0.0.0.3 area 0
+ network 172.30.15.2 0.0.0.0 area 0
+!         
+

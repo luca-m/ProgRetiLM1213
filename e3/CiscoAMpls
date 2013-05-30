@@ -1,0 +1,87 @@
+2801A#show mpls interfaces detail 
+Interface FastEthernet0/3/0:
+	IP labeling enabled (ldp):
+	  Interface config
+	LSP Tunnel labeling not enabled
+	BGP tagging not enabled
+	Tagging operational
+	Fast Switching Vectors:
+	  IP to MPLS Fast Switching Vector
+	  MPLS Turbo Vector
+	MTU = 1500
+
+2801A#show mpls ldp discovery 
+ Local LDP Identifier:
+    172.30.15.2:0
+    Discovery Sources:
+    Interfaces:
+	FastEthernet0/3/0 (ldp): xmit/recv
+	    LDP Id: 10.10.100.200:0
+
+2801A#show mpls ldp neighbor 
+    Peer LDP Ident: 10.10.100.200:0; Local LDP Ident 172.30.15.2:0
+	TCP connection: 10.10.100.200.646 - 172.30.15.2.55404
+	State: Oper; Msgs sent/rcvd: 18/17; Downstream
+	Up time: 00:02:20
+	LDP discovery sources:
+	  FastEthernet0/3/0, Src IP addr: 10.10.100.1
+        Addresses bound to peer LDP Ident:
+          192.168.8.251   10.10.100.1     10.10.200.1     10.10.100.200   
+
+2801A#show mpls label range 
+Downstream Generic label region: Min/Max label: 1000/1999
+
+2801A#show mpls ip binding 
+  10.10.100.0/30 
+	in label:     imp-null  
+	out label:    imp-null  lsr: 10.10.100.200:0 
+  10.10.100.200/32 
+	in label:     1002      
+	out label:    imp-null  lsr: 10.10.100.200:0  inuse
+  10.10.200.0/30 
+	in label:     1003      
+	out label:    imp-null  lsr: 10.10.100.200:0  inuse
+  10.15.16.0/30 
+	in label:     imp-null  
+  172.16.15.4/30 
+	in label:     imp-null  
+	out label:    3000      lsr: 10.10.100.200:0 
+  172.16.16.4/30 
+	in label:     1007      
+	out label:    3004      lsr: 10.10.100.200:0  inuse
+  172.30.15.1/32 
+	in label:     1000      
+	out label:    3001      lsr: 10.10.100.200:0 
+  172.30.15.2/32 
+	in label:     imp-null  
+	out label:    3002      lsr: 10.10.100.200:0 
+  172.30.16.1/32 
+        in label:     1005      
+        out label:    3005      lsr: 10.10.100.200:0  inuse
+  172.30.16.2/32 
+        in label:     1004      
+        out label:    3006      lsr: 10.10.100.200:0  inuse
+  192.168.8.0/24 
+        in label:     imp-null  
+        out label:    imp-null  lsr: 10.10.100.200:0 
+  192.168.115.0/24 
+        in label:     1001      
+        out label:    3003      lsr: 10.10.100.200:0 
+  192.168.116.0/24 
+        in label:     1006      
+        out label:    3007      lsr: 10.10.100.200:0  inuse
+
+2801A#show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+1000   Untagged    172.30.15.1/32    0          Fa0/1.15   172.16.15.5  
+1001   Untagged    192.168.115.0/24  0          Fa0/1.15   172.16.15.5  
+1002   Pop tag     10.10.100.200/32  0          Fa0/3/0    10.10.100.1  
+1003   Pop tag     10.10.200.0/30    0          Fa0/3/0    10.10.100.1  
+1004   3006        172.30.16.2/32    0          Fa0/3/0    10.10.100.1  
+1005   3005        172.30.16.1/32    0          Fa0/3/0    10.10.100.1  
+1006   3007        192.168.116.0/24  0          Fa0/3/0    10.10.100.1  
+1007   3004        172.16.16.4/30    0          Fa0/3/0    10.10.100.1  
+
+NOTA: il penultimo router toglie la label, per evitare di far fare una label-lookup in più al router successivo.
+

@@ -1,0 +1,17 @@
+2801A#show xconnect all detail 
+Legend: XC ST=Xconnect State, S1=Segment1 State, S2=Segment2 State
+UP=Up, DN=Down, AD=Admin Down, IA=Inactive, NH=No Hardware
+XC ST  Segment 1                         S1 Segment 2                         S2
+------+---------------------------------+--+---------------------------------+--
+UP     ac   Fa0/1.15 15(Eth VLAN)        UP mpls 172.30.16.2:1516             UP
+            Interworking: none                   Local VC label 1008            
+                                                 Remote VC label 2008           
+                                                 pw-class:                      
+2801A#show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+1002   Pop tag     10.10.100.200/32  0          Fa0/3/0    10.10.100.1  
+1003   Pop tag     10.10.200.0/30    0          Fa0/3/0    10.10.100.1  
+1004   3006        172.30.16.2/32    0          Fa0/3/0    10.10.100.1  
+1008               l2ckt(1516)       13694      none       point2point  
+
