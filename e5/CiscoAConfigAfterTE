@@ -1,0 +1,109 @@
+2801A(cfg-ip-expl-path)#next-address 10.10.100.1
+Explicit Path identifier 1516:
+    1: next-address 10.10.100.1
+2801A(cfg-ip-expl-path)#next
+2801A(cfg-ip-expl-path)#next-address 10.10.200.2
+Explicit Path identifier 1516:
+    1: next-address 10.10.100.1
+    2: next-address 10.10.200.2
+
+2801A#show mpls traffic-eng tunnels 
+
+Name: 2801A_t15                           (Tunnel15) Destination: 172.30.16.2
+  Status:
+    Admin: up         Oper: up     Path: valid       Signalling: connected
+
+    path option 1, type explicit 1516 (Basis for Setup, path weight 2)
+
+  Config Parameters:
+    Bandwidth: 1000     kbps (Global)  Priority: 7  7   Affinity: 0x0/0xFFFF
+    Metric Type: TE (default)
+    AutoRoute:  enabled   LockDown: disabled  Loadshare: 1000     bw-based
+    auto-bw: disabled
+
+  InLabel  :  - 
+  OutLabel : FastEthernet0/3/0, 3009
+  RSVP Signalling Info:
+       Src 172.30.15.2, Dst 172.30.16.2, Tun_Id 15, Tun_Instance 23
+    RSVP Path Info:
+      My Address: 10.10.100.2   
+      Explicit Route: 10.10.100.1 10.10.200.2 172.30.16.2 
+      Record Route:  NONE
+      Tspec: ave rate=1000 kbits, burst=1000 bytes, peak rate=1000 kbits
+    RSVP Resv Info:
+      Record Route:  NONE
+      Fspec: ave rate=1000 kbits, burst=1000 bytes, peak rate=1000 kbits
+  History:
+    Tunnel:
+      Time since created: 12 minutes, 10 seconds
+      Time since path change: 46 seconds
+    Current LSP:
+      Uptime: 46 seconds
+
+
+2801A#show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+1000   Untagged[T] 172.16.16.4/30    0          Tu15       point2point  
+1001   Untagged    172.30.15.1/32    0          Fa0/1.15   172.16.15.5  
+1002   Pop tag     10.10.100.200/32  0          Fa0/3/0    10.10.100.1  
+1003   Pop tag     10.10.200.0/30    0          Fa0/3/0    10.10.100.1  
+1004   Pop tag [T] 172.30.16.2/32    0          Tu15       point2point  
+1005   Untagged    192.168.115.0/24  0          Fa0/1.15   172.16.15.5  
+1006   Untagged[T] 172.30.16.1/32    0          Tu15       point2point  
+1007   Untagged[T] 192.168.116.0/24  0          Tu15       point2point  
+
+[T]	Forwarding through a TSP tunnel.
+	View additional tagging info with the 'detail' option
+
+2801A#show ip ospf 15 mpls traffic-eng link 
+
+            OSPF Router with ID (172.30.15.2) (Process ID 15)
+
+  Area 0 has 1 MPLS TE links. Area instance is 2.
+
+  Links in hash bucket 16.
+    Link is associated with fragment 0. Link instance is 2
+      Link connected to Broadcast network
+      Link ID : 10.10.100.2
+      Interface Address : 10.10.100.2
+      Admin Metric te: 1 igp: 1
+      Maximum bandwidth : 12500000
+      Maximum reservable bandwidth : 125000
+      Number of Priority : 8
+      Priority 0 : 125000      Priority 1 : 125000    
+      Priority 2 : 125000      Priority 3 : 125000    
+      Priority 4 : 125000      Priority 5 : 125000    
+      Priority 6 : 125000      Priority 7 : 0         
+      Affinity Bit : 0x0
+
+
+2801A#show ip ospf 15 database 
+
+            OSPF Router with ID (172.30.15.2) (Process ID 15)
+
+		Router Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.10.100.200   10.10.100.200   767         0x80000137 0x00A7D6 4
+172.30.15.1     172.30.15.1     180         0x8000000B 0x00BE50 3
+172.30.15.2     172.30.15.2     1503        0x80000270 0x00D91A 4
+172.30.16.1     172.30.16.1     180         0x8000000A 0x0013F6 3
+172.30.16.2     172.30.16.2     1504        0x8000026A 0x009549 5
+
+		Net Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+10.10.100.2     172.30.15.2     1949        0x8000012D 0x009A02
+10.100.200.2    172.30.16.2     1504        0x80000001 0x002549
+172.16.15.5     172.30.15.1     180         0x80000002 0x008D6C
+172.16.16.5     172.30.16.1     180         0x80000002 0x009164
+
+		Type-10 Opaque Link Area Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Opaque ID
+1.0.0.0         10.10.100.200   1022        0x80000001 0x0083B2 0       
+1.0.0.0         172.30.15.2     134         0x80000002 0x009BC3 0       
+1.0.0.0         172.30.16.2     135         0x80000001 0x0035A8 0       
+1.0.0.1         10.10.100.200   136         0x80000002 0x0069BC 1       
+
