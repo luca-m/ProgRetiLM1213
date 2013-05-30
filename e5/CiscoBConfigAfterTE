@@ -1,0 +1,106 @@
+
+interface Vlan1
+ ip address 10.10.200.2 255.255.255.252
+ ip ospf network point-to-point
+ mpls label protocol ldp
+ mpls ip
+ mpls traffic-eng tunnels
+ ip rsvp bandwidth 1000
+!
+
+
+
+interface Vlan2
+ ip address 10.100.200.2 255.255.255.252
+ mpls ip
+!
+
+show mpls ldp neighbor 
+    Peer LDP Ident: 10.10.100.200:0; Local LDP Ident 172.30.16.2:0
+	TCP connection: 10.10.100.200.646 - 172.30.16.2.11259
+	State: Oper; Msgs sent/rcvd: 96/94; Downstream
+	Up time: 00:52:22
+	LDP discovery sources:
+	  Vlan1, Src IP addr: 10.10.200.1
+        Addresses bound to peer LDP Ident:
+          192.168.8.251   10.10.100.1     10.10.200.1     10.10.100.200   
+    Peer LDP Ident: 172.30.15.2:0; Local LDP Ident 172.30.16.2:0
+	TCP connection: 172.30.15.2.646 - 172.30.16.2.58337
+	State: Oper; Msgs sent/rcvd: 16/17; Downstream
+	Up time: 00:00:39
+	LDP discovery sources:
+	  Vlan2, Src IP addr: 10.100.200.1
+        Addresses bound to peer LDP Ident:
+          192.168.8.249   10.10.100.2     10.15.16.1      172.30.15.2     
+          172.16.15.6     10.100.200.1 
+
+
+mpls traffic-eng tunnels
+interface vlan1
+ip rsvp bandwidth 1000
+
+router ospf 16
+mpls traffic-eng area 0
+traffic-eng router-id Loopback16
+
+
+2801B#show ip ospf database 
+
+            OSPF Router with ID (172.30.16.2) (Process ID 16)
+
+		Router Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+10.10.100.200   10.10.100.200   798         0x80000137 0x00A7D6 4
+172.30.15.1     172.30.15.1     212         0x8000000B 0x00BE50 3
+172.30.15.2     172.30.15.2     1534        0x80000270 0x00D91A 4
+172.30.16.1     172.30.16.1     210         0x8000000A 0x0013F6 3
+172.30.16.2     172.30.16.2     1533        0x8000026A 0x009549 5
+
+		Net Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+10.10.100.2     172.30.15.2     1982        0x8000012D 0x009A02
+10.100.200.2    172.30.16.2     1533        0x80000001 0x002549
+172.16.15.5     172.30.15.1     212         0x80000002 0x008D6C
+172.16.16.5     172.30.16.1     210         0x80000002 0x009164
+
+		Type-10 Opaque Link Area Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Opaque ID
+1.0.0.0         10.10.100.200   1052        0x80000001 0x0083B2 0       
+1.0.0.0         172.30.15.2     166         0x80000002 0x009BC3 0       
+1.0.0.0         172.30.16.2     165         0x80000001 0x0035A8 0       
+1.0.0.1         10.10.100.200   166         0x80000002 0x0069BC 1 
+
+
+show mpls traffic-eng tunnels 
+
+LSP Tunnel 2801A_t15 is signalled, connection is up
+  InLabel  : Vlan1, implicit-null
+  OutLabel :  - 
+  RSVP Signalling Info:
+       Src 172.30.15.2, Dst 172.30.16.2, Tun_Id 15, Tun_Instance 23
+    RSVP Path Info:
+      My Address: 172.30.16.2   
+      Explicit Route:  NONE
+      Record Route:  NONE
+      Tspec: ave rate=1000 kbits, burst=1000 bytes, peak rate=1000 kbits
+    RSVP Resv Info:
+      Record Route:  NONE
+      Fspec: ave rate=1000 kbits, burst=1000 bytes, peak rate=1000 kbits
+
+
+show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+2000   Pop tag     172.16.15.4/30    0          Vl2        10.100.200.1 
+2001   Untagged    172.30.16.1/32    0          Fa0/1.16   172.16.16.5  
+2002   Pop tag     172.30.15.2/32    0          Vl2        10.100.200.1 
+2003   Untagged    192.168.116.0/24  0          Fa0/1.16   172.16.16.5  
+2004   Pop tag     10.10.100.200/32  0          Vl1        10.10.200.1  
+2005   1001        172.30.15.1/32    0          Vl2        10.100.200.1 
+2006   1005        192.168.115.0/24  0          Vl2        10.100.200.1 
+2007   Pop tag     10.10.100.0/30    0          Vl2        10.100.200.1 
+       Pop tag     10.10.100.0/30    0          Vl1        10.10.200.1
+
