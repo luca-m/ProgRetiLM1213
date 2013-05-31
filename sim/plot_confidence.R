@@ -1,17 +1,17 @@
 #!/usr/bin/env Rscript
 #
 # Confidence Interval Plotter.
-# Note: it pick the first coloumn as X values
 #
 # Usage : 
-#       ./plot_confidence.R <infile> <outfile> <targetCol> <minTargetCol> <maxTargetCol>
+#       ./plot_confidence.R <infile> <outfile> <XCol> <YCol> <minYCol> <maxYCol>
 #
 # Parameters:
 #       - infile          CSV file containing simulation records. 
 #       - outfile         Output PDF
-#       - targetCol       Field or coloumn to use as Y value
-#       - minTargetCol       Field or coloumn to use as Y lower bound (as R regex)\n
-#       - maxTargetCol       Field or coloumn to use as Y upper bound (as R regex)\n
+#       - XCol       Field or coloumn to use as X value
+#       - YCol       Field or coloumn to use as Y value
+#       - minYCol       Field or coloumn to use as Y lower bound (as R regex)\n
+#       - maxYCol       Field or coloumn to use as Y upper bound (as R regex)\n
 
 
 loadDataFromCsv<-function(filepath){
@@ -33,30 +33,35 @@ printDataWConfidence<-function(data,X='X',Y='Y',min_Y='min_Y',max_Y='max_Y',titl
   grid(abs_max_Y,abs_max_Y,col="black")
 }
 args<-commandArgs(T)
-if (length(args)>=5) {
+if (length(args)>=6) {
   infile<-args[1]
   ofile<-args[2]
   
   data<-loadDataFromCsv(infile)
-  
-  where<-as.numeric(args[3])
-  if (is.na(where)){
-    where<-args[3]
-    where<-labels(data)[[2]][grep(where,labels(data)[[2]])][1]
+ 
+  whereX<-as.numeric(args[3])
+  if (is.na(whereX)){
+    whereX<-args[3]
+    whereX<-labels(data)[[2]][grep(whereX,labels(data)[[2]])][1]
   }
-  whereMin<-as.numeric(args[4])
-  if (is.na(whereMin)){
-    whereMin<-args[4]
-    whereMin<-labels(data)[[2]][grep(whereMin,labels(data)[[2]])][1]
+  whereY<-as.numeric(args[4])
+  if (is.na(whereY)){
+    whereY<-args[4]
+    whereY<-labels(data)[[2]][grep(whereY,labels(data)[[2]])][1]
   }
-  whereMax<-as.numeric(args[5])
-  if (is.na(whereMax)){
-    whereMax<-args[5]
-    whereMax<-labels(data)[[2]][grep(whereMax,labels(data)[[2]])][1]
+  whereYMin<-as.numeric(args[5])
+  if (is.na(whereYMin)){
+    whereYMin<-args[5]
+    whereYMin<-labels(data)[[2]][grep(whereYMin,labels(data)[[2]])][1]
+  }
+  whereYMax<-as.numeric(args[6])
+  if (is.na(whereYMax)){
+    whereYMax<-args[6]
+    whereYMax<-labels(data)[[2]][grep(whereYMax,labels(data)[[2]])][1]
   }
 
   pdf(ofile)
-  printDataWConfidence(data,labels(data)[[2]][1],where,whereMin,whereMax)
+  printDataWConfidence(data,whereX,whereY,whereYMin,whereYMax,"")
   dev.off()
 }else{
   cat("ERR: Mandatory parameters missing!\n")
@@ -64,7 +69,8 @@ if (length(args)>=5) {
   cat("Params:\n")
   cat("    <infile>          Input CSV file containing the simulation data\n")
   cat("    <outfile>         Output PDF\n")
-  cat("    <targetCol>       Field or coloumn to use as Y value (as R regex)\n")
-  cat("    <minTargetCol>       Field or coloumn to use as Y lower bound (as R regex)\n")
-  cat("    <minTargetCol>       Field or coloumn to use as Y upper bound (as R regex)\n")
+  cat("    <XCol>       Field or coloumn to use as Y value\n")
+  cat("    <YCol>       Field or coloumn to use as Y value\n")
+  cat("    <minYCol>       Field or coloumn to use as Y lower bound (as R regex)\n")
+  cat("    <minYCol>       Field or coloumn to use as Y upper bound (as R regex)\n")
 }

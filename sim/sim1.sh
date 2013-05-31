@@ -5,7 +5,7 @@
 if [ "$1" == "clean" ]
 then 
 	echo "Cleaning previos simulation data"
-	rm -r data/
+	rm -r data/sim1/
 fi
 
 
@@ -19,25 +19,22 @@ mkdir data/sim1/part2/raw 2>/dev/null
 PATHPART_1=data/sim1/part1
 PATHPART_2=data/sim1/part2
 
-
-echo "> PART 1"
-
-RHO=0.7
 SVC_MEAN_TIME=3   # MU = 1/SVC_MEAN_TIME
 ARRIVALS=500
 SAMPLES=50
 CONF=0.95
 FIELDNAME='eta_mean'
-seed=1
 
-echo "Comparison between MM1 and MD1 with same RHO and MU"
-echo "Field $FIELDNAME confidence interval $CONF" 
+echo "> PART 1"
+
+RHO=0.7
+
+echo -e "Comparison between MM1 and MD1 with same RHO and MU\nService mean time $SVC_MEAN_TIME and rho $RHO\n$FIELDNAME confidence interval $CONF" > $PATHPART_1/note
 echo "Simulating:"
-echo "Comparison between MM1 and MD1 with same RHO and MU\n$FIELDNAME confidence interval $CONF" > $PATHPART_1/note
 touch $PATHPART_1/mm1.csv
 touch $PATHPART_1/md1.csv
 echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME " | tee -a $PATHPART_1/mm1.csv $PATHPART_1/md1.csv 1>/dev/null
-
+seed=1
 for ((n=1;n<=$ARRIVALS;n++)) 
 do
 	echo -n "."
@@ -61,27 +58,45 @@ do
 	wait $PID1
 	wait $PID2
 done
-./plot_confidence.R $PATHPART_1/mm1.csv  $PATHPART_1/mm1.pdf $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
-./plot_confidence.R data/sim1/part1/md1.csv $PATHPART_1/md1.pdf $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
+./plot_confidence.R $PATHPART_1/mm1.csv $PATHPART_1/mm1.pdf X..arrivals $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
+./plot_confidence.R $PATHPART_1/md1.csv $PATHPART_1/md1.pdf X..arrivals $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 echo ""
 echo -e "Results in $PATHPART_1/mm1.csv and $PATHPART_1/md1.csv\nPlots in $PATHPART_1/mm1.pdf and $PATHPART_1/md1.pdf"
 
 
-# PART 2
-
-# mean eta with rho in [0,1]
-#echo "Comparison between MM1 and MD1 with same RHO and MU" > $PATHPART_2/note
-#for rho in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 ;
-#do
-#	touch $PATHPART_1/mm1_$n
-#	touch $PATHPART_1/md1_$n
-#	for i in {0..$SAMPLES};
-#	do
-#		./mm1prio 0 $ARRIVALS 1 $rho $MU >> $PATHPART_2/mm1_$rho
-#		./md1prio 0 $ARRIVALS 1 $rho $MU >> $PATHPART_2/md1_$rho
-#	done
-#done 
-
-#Intervallo di confidenza al 95%
+echo "> PART 2"
+echo -e "Eta mean for rho in (0,1) for MM1 and MD1 with $ARRIVALS arrivals and service mean time $SVC_MEAN_TIME\nField $FIELDNAME confidence interval $CONF" | tee -a $PATHPART_2/note
+echo "Simulating:"
+touch $PATHPART_2/mm1.csv
+touch $PATHPART_2/md1.csv
+echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME " | tee -a $PATHPART_2/mm1.csv $PATHPART_2/md1.csv 1>/dev/null
+seed=1
+for rho in 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 0.99 ;
+do
+	echo -n "."
+	touch $PATHPART_2/raw/mm1_$rho
+	touch $PATHPART_2/raw/md1_$rho
+	echo "# arrivals, rho, mu, eta, eta_mean" | tee -a $PATHPART_2/raw/mm1_$rho $PATHPART_2/raw/md1_$rho 1>/dev/null
+	for ((i=0;i<=$SAMPLES;i++))
+	do
+		seed=`expr $seed + 9`
+		./mm1prio $seed $ARRIVALS 1 $rho $SVC_MEAN_TIME >> $PATHPART_2/raw/mm1_$rho &
+		PID1=$!
+		./md1prio $seed $ARRIVALS 1 $rho $SVC_MEAN_TIME >> $PATHPART_2/raw/md1_$rho &
+		PID2=$!
+		wait $PID1
+		wait $PID2
+	done
+	./confidence_interval.R $PATHPART_2/raw/mm1_$rho $FIELDNAME $CONF 2>/dev/null >> $PATHPART_2/mm1.csv &
+	PID1=$!
+	./confidence_interval.R $PATHPART_2/raw/md1_$rho $FIELDNAME $CONF 2>/dev/null >> $PATHPART_2/md1.csv &
+	PID2=$!
+	wait $PID1
+	wait $PID2
+done 
+./plot_confidence.R $PATHPART_2/mm1.csv $PATHPART_2/mm1.pdf rho $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
+./plot_confidence.R $PATHPART_2/md1.csv $PATHPART_2/md1.pdf rho $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
+echo ""
+echo -e "Results in $PATHPART_2/mm1.csv and $PATHPART_2/md1.csv\nPlots in $PATHPART_2/mm1.pdf and $PATHPART_2/md1.pdf"
 
 #Confronto con i risultati teorici M/D/1 e M/M/1
