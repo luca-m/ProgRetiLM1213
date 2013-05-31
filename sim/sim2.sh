@@ -60,9 +60,11 @@ done
 ./plot_confidence.R $PATHPART_1/mm1_e.csv $PATHPART_1/mm1_e1.pdf x eta1 min_eta1 max_eta1 2>/dev/null
 ./plot_confidence.R $PATHPART_1/mm1_e.csv $PATHPART_1/mm1_e2.pdf x eta2 min_eta2 max_eta2 2>/dev/null
 ./plot_confidence.R $PATHPART_1/mm1_e.csv $PATHPART_1/mm1_emean.pdf x eta_mean min_eta_mean max_eta_mean 2>/dev/null
+./plot_summary.R $PATHPART_1/mm1_e.csv $PATHPART_1/mm1_all.pdf x ^eta 2>/dev/null
 echo ""
 echo "Results in $PATHPART_1/mm1_e.csv"
 echo "Plots in $PATHPART_1/mm1_e1.pdf $PATHPART_1/mm1_e2.pdf $PATHPART_1/mm1_emean.pdf"
+echo "All in one plot in $PATHPART_1/mm1_all.pdf"
 #############################################################################
 # PART 2
 #############################################################################
@@ -95,9 +97,11 @@ done
 ./plot_confidence.R $PATHPART_2/mm1_e.csv $PATHPART_2/mm1_e2.pdf x eta2 min_eta2 max_eta2 2>/dev/null
 ./plot_confidence.R $PATHPART_2/mm1_e.csv $PATHPART_2/mm1_e3.pdf x eta3 min_eta3 max_eta3 2>/dev/null
 ./plot_confidence.R $PATHPART_2/mm1_e.csv $PATHPART_2/mm1_emean.pdf x eta_mean min_eta_mean max_eta_mean 2>/dev/null
+./plot_summary.R $PATHPART_2/mm1_e.csv $PATHPART_2/mm1_all.pdf x ^eta 2>/dev/null
 echo ""
 echo "Results in $PATHPART_2/mm1_e.csv"
 echo "Plots in $PATHPART_2/mm1_e1.pdf $PATHPART_2/mm1_e2.pdf $PATHPART_2/mm1_emean.pdf"
+echo "All in one plot in $PATHPART_2/mm1_all.pdf"
 #############################################################################
 # PART 3
 #############################################################################
@@ -130,9 +134,11 @@ done
 ./plot_confidence.R $PATHPART_3/mm1_e.csv $PATHPART_3/mm1_e2.pdf x eta2 min_eta2 max_eta2 2>/dev/null
 ./plot_confidence.R $PATHPART_3/mm1_e.csv $PATHPART_3/mm1_e3.pdf x eta3 min_eta3 max_eta3 2>/dev/null
 ./plot_confidence.R $PATHPART_3/mm1_e.csv $PATHPART_3/mm1_emean.pdf x eta_mean min_eta_mean max_eta_mean 2>/dev/null
+./plot_summary.R $PATHPART_3/mm1_e.csv $PATHPART_3/mm1_all.pdf x ^eta 2>/dev/null
 echo ""
 echo "Results in $PATHPART_3/mm1_e.csv "
 echo "Plots in $PATHPART_3/mm1_e2.pdf $PATHPART_3/mm1_e2.pdf $PATHPART_3/mm1_emean.pdf"
+echo "All in one plot in $PATHPART_3/mm1_all.pdf"
 #############################################################################
 # PART 4
 #############################################################################
@@ -165,6 +171,8 @@ done
 ./plot_confidence.R $PATHPART_4/mm1_e.csv $PATHPART_4/mm1_e2.pdf x eta2 min_eta2 max_eta2 2>/dev/null
 ./plot_confidence.R $PATHPART_4/mm1_e.csv $PATHPART_4/mm1_e3.pdf x eta3 min_eta3 max_eta3 2>/dev/null
 ./plot_confidence.R $PATHPART_4/mm1_e.csv $PATHPART_4/mm1_emean.pdf x eta_mean min_eta_mean max_eta_mean 2>/dev/null
+./plot_summary.R $PATHPART_4/mm1_e.csv $PATHPART_4/mm1_all.pdf x ^eta 2>/dev/null
 echo ""
 echo "Results in $PATHPART_4/mm1_e.csv"
 echo "Plots in $PATHPART_4/mm1_e1.pdf $PATHPART_4/mm1_e2.pdf $PATHPART_4/mm1_emean.pdf"
+echo "All in one plot in $PATHPART_4/mm1_all.pdf"
