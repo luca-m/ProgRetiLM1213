@@ -1,13 +1,11 @@
 #!/bin/bash
 #
 #
-
 if [ "$1" == "clean" ]
 then 
 	echo "Cleaning previos simulation data"
 	rm -r data/sim1/
 fi
-
 
 mkdir data 2>/dev/null
 mkdir data/sim1 2>/dev/null
@@ -23,13 +21,15 @@ SVC_MEAN_TIME=3   # MU = 1/SVC_MEAN_TIME
 ARRIVALS=500
 SAMPLES=50
 CONF=0.95
-FIELDNAME='eta_mean'
-
-echo "> PART 1"
-
 RHO=0.7
-
-echo -e "Comparison between MM1 and MD1 with same RHO and MU\nService mean time $SVC_MEAN_TIME and rho $RHO\n$FIELDNAME confidence interval $CONF" > $PATHPART_1/note
+FIELDNAME='eta_mean'
+#############################################################################
+# PART 1 
+#############################################################################
+echo "> PART 1"
+echo "Comparison between MM1 and MD1 with same RHO and MU" | tee -a $PATHPART_1/note
+echo "Service mean time $SVC_MEAN_TIME and rho $RHO" | tee -a $PATHPART_1/note
+echo "$FIELDNAME confidence interval $CONF" | tee -a $PATHPART_1/note
 echo "Simulating:"
 touch $PATHPART_1/mm1.csv
 touch $PATHPART_1/md1.csv
@@ -61,11 +61,14 @@ done
 ./plot_confidence.R $PATHPART_1/mm1.csv $PATHPART_1/mm1.pdf X..arrivals $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 ./plot_confidence.R $PATHPART_1/md1.csv $PATHPART_1/md1.pdf X..arrivals $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 echo ""
-echo -e "Results in $PATHPART_1/mm1.csv and $PATHPART_1/md1.csv\nPlots in $PATHPART_1/mm1.pdf and $PATHPART_1/md1.pdf"
-
-
+echo "Results in $PATHPART_1/mm1.csv and $PATHPART_1/md1.csv"
+echo "Plots in $PATHPART_1/mm1.pdf and $PATHPART_1/md1.pdf"
+#############################################################################
+# PART 2
+#############################################################################
 echo "> PART 2"
-echo -e "Eta mean for rho in (0,1) for MM1 and MD1 with $ARRIVALS arrivals and service mean time $SVC_MEAN_TIME\nField $FIELDNAME confidence interval $CONF" | tee -a $PATHPART_2/note
+echo "Eta mean for rho in (0,1) for MM1 and MD1 with $ARRIVALS arrivals and service mean time $SVC_MEAN_TIME" | tee -a $PATHPART_2/note
+echo "Field $FIELDNAME confidence interval $CONF" | tee -a $PATHPART_2/note
 echo "Simulating:"
 touch $PATHPART_2/mm1.csv
 touch $PATHPART_2/md1.csv
@@ -97,6 +100,7 @@ done
 ./plot_confidence.R $PATHPART_2/mm1.csv $PATHPART_2/mm1.pdf rho $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 ./plot_confidence.R $PATHPART_2/md1.csv $PATHPART_2/md1.pdf rho $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 echo ""
-echo -e "Results in $PATHPART_2/mm1.csv and $PATHPART_2/md1.csv\nPlots in $PATHPART_2/mm1.pdf and $PATHPART_2/md1.pdf"
+echo "Results in $PATHPART_2/mm1.csv and $PATHPART_2/md1.csv"
+echo "Plots in $PATHPART_2/mm1.pdf and $PATHPART_2/md1.pdf"
 
 #Confronto con i risultati teorici M/D/1 e M/M/1
