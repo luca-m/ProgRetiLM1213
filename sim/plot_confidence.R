@@ -59,7 +59,7 @@ if (length(args)>=6) {
     whereYMax<-args[6]
     whereYMax<-labels(data)[[2]][grep(whereYMax,labels(data)[[2]])][1]
   }
-
+  data<-data[complete.cases(data),]
   pdf(ofile)
   printDataWConfidence(data,whereX,whereY,whereYMin,whereYMax,"")
   dev.off()

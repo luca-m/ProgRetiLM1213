@@ -57,6 +57,7 @@ if (length(args)>=3) {
   }
   conf<-as.double(args[3])
 # 
+  data<-data[complete.cases(data),]
   d<-sapply(data,mean)
   interval<-calcConfidenceInterval(data=data,wherelist=where,confidence=conf)
   cat(d,interval,sep=',')
