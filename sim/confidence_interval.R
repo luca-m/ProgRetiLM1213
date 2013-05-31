@@ -26,21 +26,6 @@ calcConfidenceInterval<-function(data, wherelist=c('ID'), confidence=0.95){
   }
   return(confintervals) 
 }
-printDataWConfidence<-function(data,X='X',Y='Y',min_Y='min_Y',max_Y='max_Y',title=""){
-  abs_max_Y<-round(max(data[max_Y]))
-  plot(data[X][,], data[Y][,], ylim=c(0,abs_max_Y), type="p",xlab=X,ylab=Y)
-  # make polygon where coordinates start with lower limit and 
-  # then upper limit in reverse order
-  polygon( c(data[X][,],rev(data[X][,])) , c(data[min_Y][,], rev(data[max_Y][,])),
-          col="grey75", border=FALSE)
-  lines(data[X][,], data[Y][,], lwd=2)
-  #add red lines on borders of polygon
-  lines(data[X][,], data[min_Y][,], col="red",lty=2)
-  lines(data[X][,], data[max_Y][,], col="red",lty=2)
-  title(main=paste(title,X,Y,sep=' '))
-  grid(abs_max_Y,abs_max_Y,col="black")
-}
-
 ###########################
 # MAIN 
 ###########################
