@@ -33,33 +33,39 @@ seed=1
 echo "Comparison between MM1 and MD1 with same RHO and MU"
 echo "Field $FIELDNAME confidence interval $CONF" 
 echo "Simulating:"
-
-echo "Comparison between MM1 and MD1 with same RHO and MU" > $PATHPART_1/note
-echo "Eta mean confidence interval $CONF" >> $PATHPART_1/note
+echo "Comparison between MM1 and MD1 with same RHO and MU\n$FIELDNAME confidence interval $CONF" > $PATHPART_1/note
 touch $PATHPART_1/mm1.csv
 touch $PATHPART_1/md1.csv
-echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME" > $PATHPART_1/mm1.csv
-echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME" > $PATHPART_1/md1.csv
+echo "# arrivals, rho, mu, eta, eta_mean, min_$FIELDNAME, max_$FIELDNAME " | tee -a $PATHPART_1/mm1.csv $PATHPART_1/md1.csv 1>/dev/null
 
 for ((n=1;n<=$ARRIVALS;n++)) 
 do
 	echo -n "."
 	touch $PATHPART_1/raw/mm1_$n
 	touch $PATHPART_1/raw/md1_$n
-	echo "# arrivals, rho, mu, eta, eta_mean" > $PATHPART_1/raw/mm1_$n
-	echo "# arrivals, rho, mu, eta, eta_mean" > $PATHPART_1/raw/md1_$n
-	for ((i=0;i<=$SAMPLES;i++))
+	echo "# arrivals, rho, mu, eta, eta_mean" | tee -a $PATHPART_1/raw/mm1_$n $PATHPART_1/raw/md1_$n 1>/dev/null
+ 	for ((i=0;i<=$SAMPLES;i++))
 	do
 		seed=`expr $seed + 9`
-		./mm1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/mm1_$n
-		./md1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/md1_$n
+		./mm1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/mm1_$n &
+		PID1=$!
+		./md1prio $seed $n 1 $RHO $SVC_MEAN_TIME >> $PATHPART_1/raw/md1_$n &
+		PID2=$!
+		wait $PID1
+		wait $PID2
 	done
-
-	./confidence_interval.R $PATHPART_1/raw/mm1_$n $FIELDNAME $CONF 2>/dev/null >> $PATHPART_1/mm1.csv
-	./confidence_interval.R $PATHPART_1/raw/md1_$n $FIELDNAME $CONF 2>/dev/null >> $PATHPART_1/md1.csv
-done 
+	./confidence_interval.R $PATHPART_1/raw/mm1_$n $FIELDNAME $CONF 2>/dev/null >> $PATHPART_1/mm1.csv &
+	PID1=$!
+	./confidence_interval.R $PATHPART_1/raw/md1_$n $FIELDNAME $CONF 2>/dev/null >> $PATHPART_1/md1.csv &
+	PID2=$!
+	wait $PID1
+	wait $PID2
+done
+./plot_confidence.R $PATHPART_1/mm1.csv  $PATHPART_1/mm1.pdf $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
+./plot_confidence.R data/sim1/part1/md1.csv $PATHPART_1/md1.pdf $FIELDNAME min_$FIELDNAME max_$FIELDNAME 2>/dev/null
 echo ""
-echo "Results in $PATHPART_1/mm1.csv and $PATHPART_1/md1.csv "
+echo -e "Results in $PATHPART_1/mm1.csv and $PATHPART_1/md1.csv\nPlots in $PATHPART_1/mm1.pdf and $PATHPART_1/md1.pdf"
+
 
 # PART 2
 
