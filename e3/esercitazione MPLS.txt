@@ -1,0 +1,134 @@
+1841C#show mpls ldp  neighbor 
+    Peer LDP Ident: 172.30.15.2:0; Local LDP Ident 10.10.100.200:0
+	TCP connection: 172.30.15.2.55404 - 10.10.100.200.646
+	State: Oper; Msgs sent/rcvd: 17/18; Downstream
+	Up time: 00:02:10
+	LDP discovery sources:
+	  FastEthernet0/1, Src IP addr: 10.10.100.2
+        Addresses bound to peer LDP Ident:
+          192.168.8.249   172.16.15.6     10.10.100.2     10.15.16.1      
+          172.30.15.2     
+    Peer LDP Ident: 172.30.16.2:0; Local LDP Ident 10.10.100.200:0
+	TCP connection: 172.30.16.2.11259 - 10.10.100.200.646
+	State: Oper; Msgs sent/rcvd: 15/15; Downstream
+	Up time: 00:00:55
+	LDP discovery sources:
+	  Vlan1, Src IP addr: 10.10.200.2
+        Addresses bound to peer LDP Ident:
+          192.168.8.250   172.16.16.6     172.30.16.2     10.10.200.2     
+
+___________________________________________________________________________________
+1841C#show mpls interfaces detail 
+Interface FastEthernet0/1:
+	IP labeling enabled (ldp):
+	  Interface config
+	LSP Tunnel labeling not enabled
+	BGP tagging not enabled
+	Tagging operational
+	Fast Switching Vectors:
+	  IP to MPLS Fast Switching Vector
+	  MPLS Turbo Vector
+	MTU = 1500
+Interface Vlan1:
+	IP labeling enabled (ldp):
+	  Interface config
+	LSP Tunnel labeling not enabled
+	BGP tagging not enabled
+	Tagging operational
+	Fast Switching Vectors:
+	  IP to MPLS Fast Switching Vector
+	  MPLS Turbo Vector
+	MTU = 1500
+___________________________________________________________________________________
+
+1841C#show mpls ldp discovery 
+ Local LDP Identifier:
+    10.10.100.200:0
+    Discovery Sources:
+    Interfaces:
+	FastEthernet0/1 (ldp): xmit/recv
+	    LDP Id: 172.30.15.2:0
+	Vlan1 (ldp): xmit/recv
+	    LDP Id: 172.30.16.2:0
+___________________________________________________________________________________
+1841C#show mpls label range 
+Downstream Generic label region: Min/Max label: 3000/3999
+___________________________________________________________________________________
+1841C#show mpls ip binding 
+  10.10.100.0/30 
+	in label:     imp-null  
+	out label:    imp-null  lsr: 172.30.15.2:0   
+	out label:    2007      lsr: 172.30.16.2:0   
+  10.10.100.200/32 
+	in label:     imp-null  
+	out label:    1002      lsr: 172.30.15.2:0   
+	out label:    2004      lsr: 172.30.16.2:0   
+  10.10.200.0/30 
+	in label:     imp-null  
+	out label:    1003      lsr: 172.30.15.2:0   
+	out label:    imp-null  lsr: 172.30.16.2:0   
+  10.15.16.0/30 
+	out label:    imp-null  lsr: 172.30.15.2:0   
+  172.16.15.4/30 
+	in label:     3000      
+	out label:    imp-null  lsr: 172.30.15.2:0    inuse
+	out label:    2006      lsr: 172.30.16.2:0   
+  172.16.16.4/30 
+	in label:     3004      
+	out label:    imp-null  lsr: 172.30.16.2:0    inuse
+	out label:    1007      lsr: 172.30.15.2:0   
+  172.30.15.1/32 
+	in label:     3001      
+	out label:    1000      lsr: 172.30.15.2:0    inuse
+	out label:    2003      lsr: 172.30.16.2:0   
+  172.30.15.2/32 
+	in label:     3002      
+	out label:    imp-null  lsr: 172.30.15.2:0    inuse
+	out label:    2002      lsr: 172.30.16.2:0   
+  172.30.16.1/32 
+	in label:     3005      
+	out label:    2000      lsr: 172.30.16.2:0    inuse
+	out label:    1005      lsr: 172.30.15.2:0   
+  172.30.16.2/32 
+	in label:     3006      
+        out label:    imp-null  lsr: 172.30.16.2:0    inuse
+	out label:    1004      lsr: 172.30.15.2:0   
+  192.168.8.0/24 
+	in label:     imp-null  
+	out label:    imp-null  lsr: 172.30.15.2:0   
+	out label:    imp-null  lsr: 172.30.16.2:0   
+  192.168.115.0/24 
+	in label:     3003      
+	out label:    1001      lsr: 172.30.15.2:0    inuse
+	out label:    2005      lsr: 172.30.16.2:0   
+  192.168.116.0/24 
+	in label:     3007      
+	out label:    2001      lsr: 172.30.16.2:0    inuse
+	out label:    1006      lsr: 172.30.15.2:0  
+___________________________________________________________________________________
+1841C#show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+3000   Pop tag     172.16.15.4/30    0          Fa0/1      10.10.100.2  
+3001   1000        172.30.15.1/32    0          Fa0/1      10.10.100.2  
+3002   Pop tag     172.30.15.2/32    0          Fa0/1      10.10.100.2  
+3003   1001        192.168.115.0/24  0          Fa0/1      10.10.100.2  
+3004   Pop tag     172.16.16.4/30    0          Vl1        10.10.200.2  
+3005   2000        172.30.16.1/32    0          Vl1        10.10.200.2  
+3006   Pop tag     172.30.16.2/32    0          Vl1        10.10.200.2  
+3007   2001        192.168.116.0/24  0          Vl1        10.10.200.2 
+___________________________________________________________________________________
+TRACEROUTE DOPO VPLS
+
+[massimo.fornari@netlab16 Desktop]$ traceroute 192.168.215.15
+traceroute to 192.168.215.15 (192.168.215.15), 30 hops max, 60 byte packets
+ 1  192.168.215.15 (192.168.215.15)  1.070 ms  1.044 ms  1.039 ms
+___________________________________________________________________________________
+NUOVA FORWARDING TABLE DOPO VPLS
+
+1841C#show mpls forwarding-table 
+Local  Outgoing    Prefix            Bytes tag  Outgoing   Next Hop    
+tag    tag or VC   or Tunnel Id      switched   interface              
+3002   Pop tag     172.30.15.2/32    22401      Fa0/1      10.10.100.2  
+3006   Pop tag     172.30.16.2/32    22911      Vl1        10.10.200.2  
+___________________________________________________________________________________

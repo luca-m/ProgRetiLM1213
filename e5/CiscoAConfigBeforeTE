@@ -1,0 +1,49 @@
+2801A#show ip ospf neighbor 
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.30.16.2       1   2WAY/DROTHER    00:00:30    10.100.200.2    FastEthernet0/1.300
+172.30.15.1       1   FULL/DR         00:00:39    172.16.15.5     FastEthernet0/1.15
+10.10.100.200     1   FULL/BDR        00:00:34    10.10.100.1     FastEthernet0/3/0
+
+2801A#show mpls ldp neighbor 
+    Peer LDP Ident: 10.10.100.200:0; Local LDP Ident 172.30.15.2:0
+	TCP connection: 10.10.100.200.646 - 172.30.15.2.55404
+	State: Oper; Msgs sent/rcvd: 98/95; Downstream
+	Up time: 00:53:13
+	LDP discovery sources:
+	  FastEthernet0/3/0, Src IP addr: 10.10.100.1
+        Addresses bound to peer LDP Ident:
+          192.168.8.251   10.10.100.1     10.10.200.1     10.10.100.200   
+    Peer LDP Ident: 172.30.16.2:0; Local LDP Ident 172.30.15.2:0
+	TCP connection: 172.30.16.2.58337 - 172.30.15.2.646
+	State: Oper; Msgs sent/rcvd: 17/16; Downstream
+	Up time: 00:00:14
+	LDP discovery sources:
+	  FastEthernet0/1.300, Src IP addr: 10.100.200.2
+        Addresses bound to peer LDP Ident:
+          192.168.8.250   172.30.16.2     10.10.200.2     172.16.16.6     
+          10.100.200.2    
+
+2801A#show mpls interfaces detail 
+Interface FastEthernet0/3/0:
+	IP labeling enabled (ldp):
+	  Interface config
+	LSP Tunnel labeling not enabled
+	BGP tagging not enabled
+	Tagging operational
+	Fast Switching Vectors:
+	  IP to MPLS Fast Switching Vector
+	  MPLS Turbo Vector
+	MTU = 1500
+Interface FastEthernet0/1.300:
+	IP labeling enabled (ldp):
+	  Interface config
+	LSP Tunnel labeling not enabled
+	BGP tagging not enabled
+	Tagging operational
+	Fast Switching Vectors:
+	  IP to MPLS Fast Switching Vector
+	  MPLS Turbo Vector
+	MTU = 1500
+
+
