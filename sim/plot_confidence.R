@@ -69,7 +69,7 @@ if (length(args)>=6) {
   cat("Params:\n")
   cat("    <infile>          Input CSV file containing the simulation data\n")
   cat("    <outfile>         Output PDF\n")
-  cat("    <XCol>       Field or coloumn to use as Y value\n")
+  cat("    <XCol>       Field or coloumn to use as X value\n")
   cat("    <YCol>       Field or coloumn to use as Y value\n")
   cat("    <minYCol>       Field or coloumn to use as Y lower bound (as R regex)\n")
   cat("    <minYCol>       Field or coloumn to use as Y upper bound (as R regex)\n")
