@@ -1,0 +1,174 @@
+[emanuele.piraccini@netlab12 ~]$ ping 192.168.114.1
+PING 192.168.114.1 (192.168.114.1) 56(84) bytes of data.
+64 bytes from 192.168.114.1: icmp_seq=1 ttl=64 time=0.845 ms
+64 bytes from 192.168.114.1: icmp_seq=2 ttl=64 time=0.181 ms
+64 bytes from 192.168.114.1: icmp_seq=3 ttl=64 time=0.191 ms
+64 bytes from 192.168.114.1: icmp_seq=4 ttl=64 time=0.189 ms
+64 bytes from 192.168.114.1: icmp_seq=5 ttl=64 time=0.184 ms
+64 bytes from 192.168.114.1: icmp_seq=6 ttl=64 time=0.172 ms
+^C                                                          
+--- 192.168.114.1 ping statistics ---                       
+6 packets transmitted, 6 received, 0% packet loss, time 5795ms
+rtt min/avg/max/mdev = 0.172/0.293/0.845/0.247 ms             
+[emanuele.piraccini@netlab12 ~]$ route -n                     
+Kernel IP routing table                                       
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.0.0.20       0.0.0.0         255.255.255.252 U     0      0        0 eth0 
+192.168.114.0   0.0.0.0         255.255.255.0   U     0      0        0 eth1.114
+192.168.8.0     0.0.0.0         255.255.255.0   U     0      0        0 eth1    
+169.254.0.0     0.0.0.0         255.255.0.0     U     1002   0        0 eth0    
+169.254.0.0     0.0.0.0         255.255.0.0     U     1003   0        0 eth1    
+0.0.0.0         192.168.8.254   0.0.0.0         UG    0      0        0 eth1    
+[emanuele.piraccini@netlab12 ~]$ sudo route add 10.0.0.0/8                      
+[sudo] password for emanuele.piraccini:                                         
+[emanuele.piraccini@netlab12 ~]$ sudo route add 10.0.0.0/8 gw 192.168.114.1     
+[sudo] password for emanuele.piraccini:                                         
+Sorry, try again.                                                               
+[sudo] password for emanuele.piraccini:                                         
+route: netmask 00ffffff doesn't make sense with host route                      
+Usage: route [-nNvee] [-FC] [<AF>]           List kernel routing tables         
+       route [-v] [-FC] {add|del|flush} ...  Modify routing table for AF.       
+
+       route {-h|--help} [<AF>]              Detailed usage syntax for specified AF.                                                                              
+       route {-V|--version}                  Display version/author and exit.    
+
+        -v, --verbose            be verbose
+        -n, --numeric            don't resolve names
+        -e, --extend             display other/more information
+        -F, --fib                display Forwarding Information Base (default)
+        -C, --cache              display routing cache instead of FIB         
+
+  <AF>=Use '-A <af>' or '--<af>'; default: inet
+  List of possible address families (which support routing):
+    inet (DARPA Internet) inet6 (IPv6) ax25 (AMPR AX.25)    
+    netrom (AMPR NET/ROM) ipx (Novell IPX) ddp (Appletalk DDP) 
+    x25 (CCITT X.25)                                           
+[emanuele.piraccini@netlab12 ~]$ sudo route add -net 10.0.0.0/8 gw 192.168.114.1
+[emanuele.piraccini@netlab12 ~]$ sudo route add -net 172.16.0.0/12  gw 192.168.114.1                                                                              
+[emanuele.piraccini@netlab12 ~]$ sudo route add -net 192.168.0.0/16  gw 192.168.114.1                                                                             
+[emanuele.piraccini@netlab12 ~]$ ping 192.168.116.1
+PING 192.168.116.1 (192.168.116.1) 56(84) bytes of data.
+64 bytes from 192.168.116.1: icmp_seq=1 ttl=59 time=1.96 ms
+64 bytes from 192.168.116.1: icmp_seq=2 ttl=59 time=1.31 ms
+64 bytes from 192.168.116.1: icmp_seq=3 ttl=59 time=1.28 ms
+64 bytes from 192.168.116.1: icmp_seq=4 ttl=59 time=1.27 ms
+64 bytes from 192.168.116.1: icmp_seq=5 ttl=59 time=1.25 ms
+64 bytes from 192.168.116.1: icmp_seq=6 ttl=59 time=1.21 ms
+64 bytes from 192.168.116.1: icmp_seq=7 ttl=59 time=1.33 ms
+^C                                                         
+--- 192.168.116.1 ping statistics ---                      
+7 packets transmitted, 7 received, 0% packet loss, time 6307ms
+rtt min/avg/max/mdev = 1.213/1.377/1.964/0.242 ms             
+[emanuele.piraccini@netlab12 ~]$ iperf
+Usage: iperf [-s|-c host] [options]   
+Try `iperf --help' for more information.
+[emanuele.piraccini@netlab12 ~]$ nc 192.168.116.1 3001
+[emanuele.piraccini@netlab12 ~]$ nc 192.168.116.1 3001
+jjojoi                                                
+^C                                                    
+[emanuele.piraccini@netlab12 ~]$ nc 192.168.116.1 3002
+kjhkj                                                 
+^[[A^[[B^C                                            
+[emanuele.piraccini@netlab12 ~]$ nc 192.168.116.1 3010
+huhuh                                                 
+^C                                                    
+[emanuele.piraccini@netlab12 ~]$ iperf -c 192.168.116.1 -p 3001 -i 10 -t 600
+------------------------------------------------------------                
+Client connecting to 192.168.116.1, TCP port 3001                           
+TCP window size: 21.6 KByte (default)                                       
+------------------------------------------------------------                
+[  3] local 192.168.114.2 port 56388 connected with 192.168.116.1 port 3001 
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3]  0.0-10.0 sec  1.20 MBytes  1.00 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 10.0-20.0 sec  1.30 MBytes  1.09 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 20.0-30.0 sec  1.05 MBytes    885 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 30.0-40.0 sec  1.14 MBytes    957 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 40.0-50.0 sec  1.12 MBytes    944 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 50.0-60.0 sec  1.07 MBytes    898 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 60.0-70.0 sec  1.17 MBytes    983 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 70.0-80.0 sec  1.07 MBytes    898 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 80.0-90.0 sec  1.09 MBytes    911 Kbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 90.0-100.0 sec    952 KBytes    780 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 100.0-110.0 sec  1.36 MBytes  1.14 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 110.0-120.0 sec  1.06 MBytes    891 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 120.0-130.0 sec  1.12 MBytes    944 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 130.0-140.0 sec  1.07 MBytes    898 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 140.0-150.0 sec  1.09 MBytes    918 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 150.0-160.0 sec  1.20 MBytes  1.01 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 160.0-170.0 sec    992 KBytes    813 Kbits/sec                        
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 170.0-180.0 sec  1008 KBytes    826 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 180.0-190.0 sec  1.10 MBytes    924 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 190.0-200.0 sec  1.05 MBytes    878 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 200.0-210.0 sec  1.18 MBytes    990 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 210.0-220.0 sec  1.06 MBytes    891 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 220.0-230.0 sec  1.15 MBytes    963 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 230.0-240.0 sec  1.16 MBytes    970 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 240.0-250.0 sec  1.09 MBytes    918 Kbits/sec                         
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 250.0-260.0 sec  1.23 MBytes  1.04 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 260.0-270.0 sec    832 KBytes    682 Kbits/sec                        
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 270.0-280.0 sec  1.32 MBytes  1.11 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth
+[  3] 280.0-290.0 sec  1.17 MBytes    983 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 290.0-300.0 sec    832 KBytes    682 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 300.0-310.0 sec  1.48 MBytes  1.24 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 310.0-320.0 sec  1.12 MBytes    937 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 320.0-330.0 sec  1.14 MBytes    957 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 330.0-340.0 sec  1008 KBytes    826 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 340.0-350.0 sec  1.21 MBytes  1.02 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 350.0-360.0 sec  1000 KBytes    819 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 360.0-370.0 sec    976 KBytes    800 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 370.0-380.0 sec  1.32 MBytes  1.11 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 380.0-390.0 sec  1.11 MBytes    931 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 390.0-400.0 sec  1.12 MBytes    937 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 400.0-410.0 sec  1.09 MBytes    918 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 410.0-420.0 sec  1.14 MBytes    957 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 420.0-430.0 sec  1.12 MBytes    944 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 430.0-440.0 sec  1.12 MBytes    944 Kbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 440.0-450.0 sec  1.02 MBytes    859 Kbits/sec
+^C[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-456.5 sec  50.8 MBytes    933 Kbits/sec
+[emanuele.piraccini@netlab12 ~]$ fi
+

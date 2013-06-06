@@ -1,0 +1,6 @@
+[daniele.bellavista@netlab13 e6]$ sudo iptables -t mangle -L FORWARD -n
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+DSCP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3001 DSCP set 0x0c 
+DSCP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3002 DSCP set 0x14 
+DSCP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3010 DSCP set 0x24 

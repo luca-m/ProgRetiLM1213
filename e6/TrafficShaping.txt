@@ -1,0 +1,39 @@
+[erik.casadei@netlab15 ~]$ tc qdisc del dev eth1.15 root
+RTNETLINK answers: Operation not permitted
+[erik.casadei@netlab15 ~]$ sudo tc qdisc del dev eth1.15 root
+RTNETLINK answers: No such file or directory
+[erik.casadei@netlab15 ~]$ sudo tc qdisc show dev eth1.15
+[erik.casadei@netlab15 ~]$ sudo tc -s qdisc show dev eth1.15
+[erik.casadei@netlab15 ~]$ sudo tc qdisc add dev eth1.15 root handle 1: htb default 0
+[erik.casadei@netlab15 ~]$ sudo tc -s qdisc show dev eth1.15
+qdisc htb 1: root refcnt 2 r2q 10 default 0 direct_packets_stat 1
+ Sent 82 bytes 1 pkt (dropped 0, overlimits 0 requeues 0) 
+ rate 0bit 0pps backlog 0b 0p requeues 0 
+[erik.casadei@netlab15 ~]$ sudo tc class add dev eth1.15 parent 1: classid 1:1 htb rate 1mbit
+[erik.casadei@netlab15 ~]$ sudo tc class add dev eth1.15 parent 1: classid 1:2 htb rate 2mbit
+[erik.casadei@netlab15 ~]$ sudo tc class add dev eth1.15 parent 1: classid 1:10 htb rate 10mbit
+[erik.casadei@netlab15 ~]$ sudo tc qdisc add dev eth1.15 parent 1:1 handle 11: sfq perturb 10
+[erik.casadei@netlab15 ~]$ sudo tc qdisc add dev eth1.15 parent 1:2 handle 21: sfq perturb 10
+[erik.casadei@netlab15 ~]$ sudo tc qdisc add dev eth1.15 parent 1:10 handle 101: sfq perturb 10
+[erik.casadei@netlab15 ~]$ sudo iptables -t mangle -A POSTROUTING -o eth1.15 -m dscp --dscp 12 -j MARK --set-mark 12
+[erik.casadei@netlab15 ~]$ sudo iptables -t mangle -A POSTROUTING -o eth1.15 -m dscp --dscp 20 -j MARK --set-mark 20
+[erik.casadei@netlab15 ~]$ sudo iptables -t mangle -A POSTROUTING -o eth1.15 -m dscp --dscp 36 -j MARK --set-mark 36
+[erik.casadei@netlab15 ~]$ sudo tc filter add dev eth1.15 parent 1: protocol ip prio 1 handle 12 fw flowid 1:1
+[erik.casadei@netlab15 ~]$ sudo tc filter add dev eth1.15 parent 1: protocol ip prio 1 handle 20 fw flowid 1:2
+[erik.casadei@netlab15 ~]$ sudo tc filter add dev eth1.15 parent 1: protocol ip prio 1 handle 36 fw flowid 1:10
+[erik.casadei@netlab15 ~]$ sudo tc qdisc show dev eth1.15
+qdisc htb 1: root refcnt 2 r2q 10 default 0 direct_packets_stat 43
+qdisc sfq 11: parent 1:1 limit 127p quantum 1518b perturb 10sec 
+qdisc sfq 21: parent 1:2 limit 127p quantum 1518b perturb 10sec 
+qdisc sfq 101: parent 1:10 limit 127p quantum 1518b perturb 10sec 
+[erik.casadei@netlab15 ~]$ sudo tc class show dev eth1.15
+class htb 1:10 root leaf 101: prio 0 rate 10000Kbit ceil 10000Kbit burst 1600b cburst 1600b 
+class htb 1:1 root leaf 11: prio 0 rate 1000Kbit ceil 1000Kbit burst 1600b cburst 1600b 
+class htb 1:2 root leaf 21: prio 0 rate 2000Kbit ceil 2000Kbit burst 1600b cburst 1600b 
+[erik.casadei@netlab15 ~]$ sudo tc filter show dev eth1.15
+filter parent 1: protocol ip pref 1 fw 
+filter parent 1: protocol ip pref 1 fw handle 0xc classid 1:1 
+filter parent 1: protocol ip pref 1 fw handle 0x14 classid 1:2 
+filter parent 1: protocol ip pref 1 fw handle 0x24 classid 1:10 
+[erik.casadei@netlab15 ~]$ 
+

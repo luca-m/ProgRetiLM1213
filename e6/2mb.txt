@@ -1,0 +1,92 @@
+[emanuele.piraccini@netlab12 ~]$ iperf -c 192.168.116.1 -p 3002 -i 10 -t 600
+------------------------------------------------------------                
+Client connecting to 192.168.116.1, TCP port 3002                           
+TCP window size: 21.6 KByte (default)                                       
+------------------------------------------------------------                
+[  3] local 192.168.114.2 port 38718 connected with 192.168.116.1 port 3002 
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3]  0.0-10.0 sec  2.39 MBytes  2.01 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 10.0-20.0 sec  2.49 MBytes  2.09 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 20.0-30.0 sec  1.91 MBytes  1.60 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 30.0-40.0 sec  2.39 MBytes  2.01 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 40.0-50.0 sec  2.41 MBytes  2.03 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 50.0-60.0 sec  2.02 MBytes  1.69 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 60.0-70.0 sec  2.66 MBytes  2.23 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 70.0-80.0 sec  2.14 MBytes  1.80 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 80.0-90.0 sec  2.17 MBytes  1.82 Mbits/sec                            
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 90.0-100.0 sec  2.37 MBytes  1.99 Mbits/sec                           
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 100.0-110.0 sec  2.09 MBytes  1.76 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 110.0-120.0 sec  2.40 MBytes  2.01 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 120.0-130.0 sec  2.34 MBytes  1.97 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 130.0-140.0 sec  2.19 MBytes  1.84 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 140.0-150.0 sec  2.03 MBytes  1.70 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 150.0-160.0 sec  2.30 MBytes  1.93 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 160.0-170.0 sec  2.34 MBytes  1.96 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 170.0-180.0 sec  2.16 MBytes  1.82 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 180.0-190.0 sec  2.25 MBytes  1.89 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 190.0-200.0 sec  2.27 MBytes  1.91 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 200.0-210.0 sec  2.34 MBytes  1.97 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 210.0-220.0 sec  2.20 MBytes  1.84 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 220.0-230.0 sec  2.21 MBytes  1.85 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth                                 
+[  3] 230.0-240.0 sec  2.25 MBytes  1.89 Mbits/sec                          
+[ ID] Interval       Transfer     Bandwidth
+[  3] 240.0-250.0 sec  2.28 MBytes  1.91 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 250.0-260.0 sec  2.34 MBytes  1.97 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 260.0-270.0 sec  2.12 MBytes  1.78 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 270.0-280.0 sec  2.29 MBytes  1.92 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 280.0-290.0 sec  2.38 MBytes  1.99 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 290.0-300.0 sec  2.21 MBytes  1.85 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 300.0-310.0 sec  2.19 MBytes  1.84 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 310.0-320.0 sec  2.30 MBytes  1.93 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 320.0-330.0 sec  2.27 MBytes  1.91 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 330.0-340.0 sec  2.16 MBytes  1.81 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 340.0-350.0 sec  2.24 MBytes  1.88 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 350.0-360.0 sec  2.30 MBytes  1.93 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 360.0-370.0 sec  2.34 MBytes  1.96 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 370.0-380.0 sec  2.22 MBytes  1.86 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 380.0-390.0 sec  2.09 MBytes  1.75 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 390.0-400.0 sec  2.45 MBytes  2.05 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[  3] 400.0-410.0 sec  2.30 MBytes  1.93 Mbits/sec
+^C[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-417.1 sec  94.3 MBytes  1.90 Mbits/sec
+[emanuele.piraccini@netlab12 ~]$
+

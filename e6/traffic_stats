@@ -1,0 +1,49 @@
+perf -s  -p 3001
+------------------------------------------------------------
+Server listening on TCP port 3001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.116.1 port 3001 connected with 192.168.114.2 port 56388
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-460.7 sec  50.8 MBytes    925 Kbits/sec
+
+
+iperf -s -p 3002
+------------------------------------------------------------
+Server listening on TCP port 3002
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.116.1 port 3002 connected with 192.168.114.2 port 38718
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-418.3 sec  94.3 MBytes  1.89 Mbits/sec
+
+iperf -s -p 3010
+------------------------------------------------------------
+Server listening on TCP port 3010
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.116.1 port 3010 connected with 192.168.114.2 port 56377
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-393.1 sec    447 MBytes  9.55 Mbits/sec
+
+
+iperf -s -p 3020
+------------------------------------------------------------
+Server listening on TCP port 3020
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.116.1 port 3020 connected with 192.168.114.2 port 52430
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-379.5 sec  1.82 GBytes  41.2 Mbits/sec
+
+
+iperf -s -p 3030
+------------------------------------------------------------
+Server listening on TCP port 3030
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 192.168.116.1 port 3030 connected with 192.168.114.2 port 47564
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-363.8 sec  1.64 GBytes  38.8 Mbits/sec
+
+
