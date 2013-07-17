@@ -142,7 +142,7 @@ Neighbor ID     Pri   State      Dead Time   Address      Interface
 172.30.16.1       1   FULL/BDR   00:00:36    172.16.16.5  FastEth0/1.16
 \end{lstlisting}
 
-Digging the network database is possible to directly obtain additional information about links, their status and their type. In the following listing part of the routing databases are reported.
+Digging the network database make possible to obtain additional information about links, their status and their type. In the following listing part of the routing databases are reported.
 \\
 \lstset{language=sh, caption=Router Cisco 2801A network database,  basicstyle=\ttfamily\scriptsize , breaklines=true}
 \begin{lstlisting}
@@ -595,7 +595,7 @@ tag    tag or VC   or Tunnel Id      switched   interface
 3007   2001        192.168.116.0/24  0          Vl1        10.10.200.2  <==
 \end{lstlisting}
 
-In fig.\ref{fig:mpl1_ping1} adnd fig.\ref{fig:mpl1_ping2} are showing network captures performed from the interface \emph{FE0/3/0} of the Cisco 2801A\footnote{Switch have been configured with a mirror port} in order to verify the label switching.
+In fig.\ref{fig:mpl1_ping1} and fig.\ref{fig:mpl1_ping2} are showing network captures performed from the interface \emph{FE0/3/0} of the Cisco 2801A\footnote{Switch have been configured with a mirror port} in order to verify the label switching.
 
 \begin{figure}
 \centering
@@ -615,7 +615,7 @@ In fig.\ref{fig:mpl1_ping1} adnd fig.\ref{fig:mpl1_ping2} are showing network ca
 \section{VPLS Configuration}
 \labelsec{VPLS_config}
 
-This time we set-up modify the basic MPLS test-bed configured and verified previously for implementing the Virtual Private LAN Service using MPLS. In fig.\ref{fig:mpls2_topology} is shown the network topology, as always $X=15$ and $Y=16$. 
+This time we modified the basic MPLS test-bed, configured and verified previously, for implementing the Virtual Private LAN Service using MPLS. In fig.\ref{fig:mpls2_topology} is shown the network topology, as always $X=15$ and $Y=16$. 
 
 \begin{figure}
 \centering
@@ -624,8 +624,8 @@ This time we set-up modify the basic MPLS test-bed configured and verified previ
 \label{fig:mpls2_topology}
 \end{figure}
 
-Configuring VPLS in LER router (Cisco 2801A and 2801B) make MPLS network appear like a chunk of wire, where LER routers are instead similar to network switches.\\
-After enabling the xconnect command on both endpoints configuration of LER and LSR change as specified in following dumps.
+Configuring VPLS in LER router (Cisco 2801A and 2801B) make MPLS network appear like a chunk of wire, where LER routers behave like network switches.\\
+After enabling the $xconnect$ command on both endpoints configuration of LER and LSR change as specified in following dumps.
 \begin{verbatim}
 (config-if)# xconnect <remote LER router-ID> 1516 encapsulation mpls
 \end{verbatim}
@@ -651,12 +651,11 @@ tag    tag or VC   or Tunnel Id      interface
 1008               l2ckt(1516)       none       point2point  <==Fwd to tunnel
 \end{lstlisting}
 
-According to the VPLS configuration implemented, host in the same VLAN should not be aware of the chunk of MPLS network they cross, in fact a traceroute between 2 host should manifest a single hop.\\
+According to the VPLS configuration implemented, host in the same VLAN should not be aware of the chunk of MPLS network they cross, in fact a $traceroute$ between 2 host should manifest a single hop.\\
 
 \lstset{language=sh, caption=Traceroute from hosts in the same VLAN, basicstyle=\ttfamily\scriptsize , breaklines=true}
 
 \begin{lstlisting}
-
 $ traceroute 192.168.215.15
 traceroute to 192.168.215.15 (192.168.215.15) , 30 hops max , 60 byte packets
 
@@ -927,7 +926,7 @@ filter parent 1: protocol ip pref 1 fw handle 0x14 classid 1:2
 filter parent 1: protocol ip pref 1 fw handle 0x24 classid 1:10 
 \end{lstlisting}
 
-After this set-up we used $iperf$ and $wireshark$ to collect statistics about traffic. The measured average bandwidth are slightly different each other, in fact statistics performed with $ipref$ present a lower bandwidth than the configured one, while $wireshark$ shows higher values.\\
+After this set-up we used $iperf$ and $wireshark$ to collect statistics about traffic. The measured average bandwidths are slightly different each other, in fact statistics performed with $ipref$ present a lower bandwidth than the configured one, while $wireshark$ shows higher values.\\
 This discrepancy could be derived on a different way in counting transmitted bits, in fact the higher values of $wireshark$ can be explained by considering Ethernet frame and IP header overhead.\\
  
 \begin{center}

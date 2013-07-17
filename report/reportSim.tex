@@ -106,10 +106,10 @@
 %===========================================================================
 \section{M/D/1 and M/M/1 comparison}
 \labelsec{MD1_MM1}
-In order to support MD1 system's simulations we slightly modify provided simulator source code for supporting multiple service time distribution.\\
+In order to support M/D/1 system's simulations we slightly modify provided simulator source code for supporting multiple service time distribution.\\
 We created a service time distribution agnostic simulation core which can be easily extended with arbitrary distribution. The complete source code can be found at \url{https://github.com/luca-m/ProgRetiLM1213/blob/master/sim/xx1prio.c}
 
-\lstset{language=C, caption=MD1 simulator extension,  basicstyle=\ttfamily\scriptsize , breaklines=true}
+\lstset{language=C, caption=M/D/1 simulator extension,  basicstyle=\ttfamily\scriptsize , breaklines=true}
 \lstinputlisting{../sim/md1prio.c}
 
 \subsection{Simulations details}
@@ -118,6 +118,7 @@ In order to obtain relevant statistical data we performed 50 run of the same exp
 Experimental data have been processed further in order to extract the 95\% confidence interval boundaries. Further details about implementation are freely available at \url{https://github.com/luca-m/ProgRetiLM1213/blob/master/sim/sim1.sh} and \url{https://github.com/luca-m/ProgRetiLM1213/blob/master/sim/sim2.sh}
 
 %===========================================================================
+\newpage
 \subsection{Fixed $\rho$ and $\mu$}
 \labelsec{MD1_MM1_fixed_rho}
 
@@ -125,44 +126,46 @@ As suggested in specification, we first run a simulation's battery with fixed $\
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{../sim/results/1/md1_fixed_rho.pdf}
-\caption{MD1 with fixed $\rho$ and $\mu$.}
+\includegraphics[width=0.7\textwidth]{../sim/results/1/md1_fixed_rho.pdf}
+\caption{M/D/1 with fixed $\rho$ and $\mu$.}
 \label{fig:md1_fixed}
 \end{figure}
 
-In fig.\ref{fig:md1_fixed} is possible to note that MD1 is quite insensitive to the number of arrivals, at least if simulation lasts sufficiently (minimum 100 arrivals).\\
-In fig.\ref{fig:mm1_fixed}, where MM1 simulation's result s are shown, we note that this kind of service distribution is not insensitive like the previous one. A possible explanation of this behaviour could reside in the presence of variability that characterize MM1, and dually in the complete lack of variability which is a typical feature of MD1.
+In fig.\ref{fig:md1_fixed} is possible to note that M/D/1 is quite insensitive to the number of arrivals, at least if simulation lasts sufficiently (minimum 100 arrivals).\\
+In fig.\ref{fig:mm1_fixed}, where M/M/1 simulation's result s are shown, we note that this kind of service distribution is not insensitive like the previous one. A possible explanation of this behaviour could reside in the presence of variability that characterize M/M/1, and dually in the complete lack of variability which is a typical feature of M/D/1.
  
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{../sim/results/1/mm1_fixed_rho.pdf}
-\caption{MM1 with fixed $\rho$ and $\mu$.}
+\includegraphics[width=0.58\textwidth]{../sim/results/1/mm1_fixed_rho.pdf}
+\caption{M/M/1 with fixed $\rho$ and $\mu$.}
 \label{fig:mm1_fixed}
 \end{figure}
 
 
 %===========================================================================
+\newpage
 \subsection{Variable $\rho$}
 \labelsec{MD1_MM1_fixed_rho}
 
 In this set of experiments we had variate $\rho$ across the interval $[0,1)$, $500$ arrivals, and mean service time $\vartheta=3$.\\
-Then we performed a comparison between simulation outcomes and analytical results.\\
-
+Then we performed a comparison between simulation outcomes and analytical results.
+\\
 \begin{figure}
-\begin{minipage}[b]{7cm}
+\begin{minipage}{7cm}
 \centering
-\includegraphics[width=7cm]{../sim/results/1/md1_var_rho.pdf}
+\includegraphics[width=5.21cm]{../sim/results/1/md1_var_rho.pdf}
 \end{minipage}\qquad
-\begin{minipage}[b]{7cm}
+\begin{minipage}{7cm}
 \centering
-\includegraphics[width=7cm]{../sim/results/1/mm1_var_rho.pdf}
+\includegraphics[width=5.21cm]{../sim/results/1/mm1_var_rho.pdf}
 \end{minipage}
-\caption{MD1 and MM1 with confidence interval 95\%}
+\caption{M/D/1 and M/M/1 with confidence interval 95\%}
 \label{fig:md1_mm1_varrho_confint}
 \end{figure}
 
+
 The figures \ref{fig:md1_mm1_varrho_confint} show simulated $\eta$ mean with different $\rho$ values, with emphasis on confidence interval, which remain pretty close to the average value. This mean that the simulation parameters chosen are good enough for our purposes.\\
-In fig.\ref{fig:md1_mm1_varrho_compare} we focus on the ratio between MM1 and MD1 $\eta$ mean. It can be noted that simulated results show the same motif of the theoretical ones, in fact the delay introduced by MD1 is approximately $\frac{1}{2} \cdot avg(\eta_ {MM1})$, just as suggested by analytical results seen during the lectures.
+In fig.\ref{fig:md1_mm1_varrho_compare} we focus on the ratio between M/M/1 and M/D/1 $\eta$ mean. It can be noted that simulated results show the same motif of the theoretical ones, in fact the delay introduced by M/D/1 is approximately $\frac{1}{2} \cdot avg(\eta_ {MM1})$, just as suggested by analytical results seen during the lectures.
 
 \begin{figure}
 \begin{minipage}[b]{7.5cm}
@@ -177,9 +180,8 @@ In fig.\ref{fig:md1_mm1_varrho_compare} we focus on the ratio between MM1 and MD
 \label{fig:md1_mm1_varrho_compare}
 \end{figure}
 
-
-\newpage
 %===========================================================================
+\newpage
 \section{M/G/1//PRIO}
 \labelsec{MG1PRIO}
 
@@ -262,7 +264,7 @@ $\rho_2 = \frac{(1-x)}{2} \cdot \rho$ \\
 $\rho_3 = \rho_2 $ \\
 $\rho \in [0,1)  $ \\
 \end{center}
-As shown in fig.\ref{fig:mm1_3class_3_all} this case is slightly different than the previous ones. Here class 2 users can benefit of their priority just for low utilization factors, in fact when $\rho > 0.5$ the average wait time is higher than in the previous scenarios. With this set-up only class 1 user are experimenting benefits with non trivial workload.
+As shown in fig.\ref{fig:mm1_3class_3_all} this case is slightly different than the previous ones. Here class 2 users can benefit of their priority just for low utilization factors, in fact when $\rho > 0.5$ the average wait time is higher than in the previous scenarios. With this set-up only class 1 users are experimenting benefits with non trivial workload.
 
 \begin{figure}
 \centering
