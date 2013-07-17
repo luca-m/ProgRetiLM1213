@@ -1,22 +1,86 @@
 \relax 
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {title}{Report Laboratorio di Progetto di Reti}{1}}
+\@writefile{toc}{\contentsline {title}{Laboratory Report\unskip \ \ignorespaces Progetto Reti 2013}{1}{chapter.1}}
 \@writefile{toc}{\authcount {1}}
-\@writefile{toc}{\contentsline {author}{Luca Mella}{1}}
+\@writefile{toc}{\contentsline {author}{Luca Mella}{1}{chapter.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}OSPF Single Area}{1}{section.1.1}}
+\newlabel{sec:OSPF_single_area}{{1}{1}{OSPF Single Area\relax }{section.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Laboratory tolopogy}}{1}{figure.1.1}}
+\newlabel{fig:ospf_topology}{{1}{1}{Laboratory tolopogy\relax }{figure.1.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}Router Cisco 2801A OSPF configuration}{2}{lstlisting.1.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.2}Router Cisco 2801B OSPF configuration}{2}{lstlisting.1.2}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.3}Router Cisco 2801A network database}{2}{lstlisting.1.3}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.4}Router Cisco 2801A database router}{3}{lstlisting.1.4}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.5}Router Cisco 2801A and 2801B resulting routing}{4}{lstlisting.1.5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.6}Traceroute from netlab15 host to netlab16 host}{4}{lstlisting.1.6}}
+\@writefile{toc}{\contentsline {subsubsection}{Link Failure}{4}{section*.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces LSA Update due to link failure}}{5}{figure.1.2}}
+\newlabel{fig:caduta_connessione_lsaupdate}{{2}{5}{LSA Update due to link failure\relax }{figure.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces LSA Update details}}{5}{figure.1.3}}
+\newlabel{fig:lsa update after failure}{{3}{5}{LSA Update details\relax }{figure.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}OSPF Multi Area}{6}{section.1.2}}
+\newlabel{sec:OSPF_multi_area}{{2}{6}{OSPF Multi Area\relax }{section.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Laboratory tolopogy with multiple routing areas}}{6}{figure.1.4}}
+\newlabel{fig:ospf2_topology}{{4}{6}{Laboratory tolopogy with multiple routing areas\relax }{figure.1.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.7}Routing table of router 192.168.115.1}{6}{lstlisting.1.7}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.8}Routing table of router 192.168.115.1 after aggregation basicstyle}{7}{lstlisting.1.8}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.9}Routing table of router 192.168.115.1 after virtual link}{8}{lstlisting.1.9}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.10}OSPF database of backbone router Cisco 2801A}{8}{lstlisting.1.10}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}MPLS Basic Configuration}{9}{section.1.3}}
+\newlabel{sec:MPLS_basic}{{3}{9}{MPLS Basic Configuration\relax }{section.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Laboratory tolopogy with multiple routing areas}}{9}{figure.1.5}}
+\newlabel{fig:mpls1_topology}{{5}{9}{Laboratory tolopogy with multiple routing areas\relax }{figure.1.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.11}MPLS Neighborhood on router Cisco 1841C}{10}{lstlisting.1.11}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.12}MPLS Label configuration in all LSR}{10}{lstlisting.1.12}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.13}MPLS forwarding table of Cisco 2801A and 1841C}{10}{lstlisting.1.13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ping request tagged with label 3007}}{11}{figure.1.6}}
+\newlabel{fig:mpl1_ping1}{{6}{11}{Ping request tagged with label 3007\relax }{figure.1.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ping response tagged with label 1001}}{11}{figure.1.7}}
+\newlabel{fig:mpl1_ping2}{{7}{11}{Ping response tagged with label 1001\relax }{figure.1.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}VPLS Configuration}{12}{section.1.4}}
+\newlabel{sec:VPLS_config}{{4}{12}{VPLS Configuration\relax }{section.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces MPLS with Virtual Private Lan Service}}{12}{figure.1.8}}
+\newlabel{fig:mpls2_topology}{{8}{12}{MPLS with Virtual Private Lan Service\relax }{figure.1.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.14}Cisco 2801A (LER) configuration after VPLS set-up}{12}{lstlisting.1.14}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.15}Traceroute from hosts in the same VLAN}{13}{lstlisting.1.15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Capture of the traceroute between hosts in the same VLAN, note the stacked MPLS label.}}{13}{figure.1.9}}
+\newlabel{fig:mpls2_traceroute_vpls}{{9}{13}{Capture of the traceroute between hosts in the same VLAN, note the stacked MPLS label}{figure.1.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}MPLS Traffic-Engineering}{14}{section.1.5}}
+\newlabel{sec:MPLS_te}{{5}{14}{MPLS Traffic-Engineering\relax }{section.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces MPLS with TE test-bed}}{14}{figure.1.10}}
+\newlabel{fig:mpls3_topology}{{10}{14}{MPLS with TE test-bed\relax }{figure.1.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.16}Traceroute from a host in VLAN115.}{14}{lstlisting.1.16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces RSVP Path packet from 2801A to 2801B}}{15}{figure.1.11}}
+\newlabel{fig:mpls3_rsvp_path}{{11}{15}{RSVP Path packet from 2801A to 2801B\relax }{figure.1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces RSVP packet from 1841C to 2801A with label specification of the tunnel.}}{16}{figure.1.12}}
+\newlabel{fig:mpls3_rsvp_message}{{12}{16}{RSVP packet from 1841C to 2801A with label specification of the tunnel}{figure.1.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.17}2801A Traffic Engineering tunnels.}{16}{lstlisting.1.17}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.18}Forwarding table of 2801A after TE. Tunnel tagging is implicit.}{17}{lstlisting.1.18}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.19}2801A OSPF database with type 10 LSA}{17}{lstlisting.1.19}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.20}Traceroute from VLNA115 to VLAN116 after TE}{17}{lstlisting.1.20}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.21}Traceroute from VLNA116 to VLAN115 after TE}{18}{lstlisting.1.21}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Hierarchical Token Bucket}{19}{section.1.6}}
+\newlabel{sec:HTB_ts}{{6}{19}{Hierarchical Token Bucket\relax }{section.1.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces MPLS with TE test-bed}}{19}{figure.1.13}}
+\newlabel{fig:qos_topology}{{13}{19}{MPLS with TE test-bed\relax }{figure.1.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.22}R1 packet classification using iptables mangle}{19}{lstlisting.1.22}}
 \bibstyle{abbrv}
 \bibdata{biblio}
-\@writefile{toc}{\contentsline {section}{\numberline {1}OSPF Single Area}{2}}
-\newlabel{sec:OSPF_single_area}{{1}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}OSPF Multi Area}{2}}
-\newlabel{sec:OSPF_multi_area}{{2}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}MPLS Basic Configuration}{2}}
-\newlabel{sec:MPLS_basic}{{3}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}VPLS Configuration}{2}}
-\newlabel{sec:VPLS_config}{{4}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}MPLS Traffic-Engineering}{2}}
-\newlabel{sec:MPLS_te}{{5}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Hierarchical Token Bucket}{2}}
-\newlabel{sec:HTB_ts}{{6}{2}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.23}From DSCP to internal-marking (netlab15)}{20}{lstlisting.1.23}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.24}Configuration of the traffic shaper (netlab15)}{20}{lstlisting.1.24}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Collected Data and Logs}{21}{section.A.1}}
